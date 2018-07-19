@@ -1,0 +1,88 @@
+
+@mixin buttonShadow{
+  box-shadow: 0 0 0 1px #82c8a0 inset,
+      0 0 0 2px rgba(255,255,255,0.15) inset,
+      0 8px 0 0 rgba(126, 194, 155, .7),
+      0 8px 0 1px rgba(0,0,0,.4),
+      0 8px 8px 1px rgba(0,0,0,0.5);
+}
+
+@mixin fadein{
+  -webkit-animation: fadein 1.5s; /* Safari, Chrome and Opera > 12.1 */
+     -moz-animation: fadein 1.5s; /* Firefox < 16 */
+      -ms-animation: fadein 1.5s; /* Internet Explorer */
+       -o-animation: fadein 1.5s; /* Opera < 12.1 */
+          animation: fadein 1.5s;
+}
+
+
+/*============================
+Landing Appointment
+========*/
+
+.landing-appointment{
+  height: 95vh;
+  width: 100vw;
+  border-style: solid;
+  position: relative;
+  background-color: #fcc9d4;
+
+  button{
+    background: #365F34;
+    border-color: #3F6B1B;
+    border-radius: 5%;
+    border-width: thin;
+    color: #fcc9d4;
+    display: flex;
+    top: 20%;
+    left: 40%;
+    position: absolute;
+    width: 18vw;
+    height: 11vh;
+    font-size: 1.5em;
+    padding: 0%;
+    text-align: center;
+    font-family: 'Pacifico', serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include buttonShadow;
+  }
+
+}
+
+/*==========================================
+Media-Icons
+========*/
+
+#media-icons-landing{
+  position: absolute;
+  top: 65%;
+  left: 65%;
+  transform: translate(-50%, -50%);
+  @include fadein;
+}
+
+/* keyframes*/
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}

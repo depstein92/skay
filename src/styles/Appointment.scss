@@ -1,0 +1,119 @@
+
+$primary-color: #e52a6f;
+$secondary-color: #675682;
+$ternary-color: #67aeca;
+
+
+@mixin rotate-color($animationTime){
+  -webkit-animation: rotate-color $animationTime;
+       -moz-animation: rotate-color $animationTime;
+        -ms-animation: rotate-color $animationTime;
+         -o-animation: rotate-color $animationTime;
+            animation: rotate-color $animationTime;
+}
+
+/* Month header */
+.month {
+  padding: 70px 25px;
+  width: 100vw;
+  height: 100vh;
+  background: #1abc9c;
+  text-align: center;
+
+
+/* Month list */
+
+    ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    ul li {
+        color: white;
+        font-size: 20px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+    }
+/* Previous button inside month header */
+    .prev {
+        float: left;
+        padding-top: 10px;
+    }
+
+    .next {
+        float: right;
+        padding-top: 10px;
+    }
+
+    /* Next button */
+}
+
+/* Weekdays (Mon-Sun) */
+.weekdays {
+    margin: 0;
+    padding: 10px 0;
+    background-color:#ddd;
+}
+
+.weekdays li {
+    display: inline-block;
+    width: 13.6%;
+    color: #666;
+    text-align: center;
+}
+
+/* Days (1-31) */
+.days {
+    padding: 10px 0;
+    background: #eee;
+    margin: 0;
+    height: 85vh;
+
+    li {
+        list-style-type: none;
+        display: inline-block;
+        width: 13.6%;
+        text-align: center;
+        border-style: solid;
+        margin-bottom: 5px;
+        font-size:12px;
+        color: #777;
+        padding: 5%;
+
+        &:hover{
+         background-color: rgb(135, 124, 140);
+         cursor: pointer;
+        }
+/* Highlight the "current" day */
+        .active {
+            padding: 5px;
+            background: #1abc9c;
+            color: white !important
+        }
+    }
+
+}
+
+
+@keyframes rotate-color{
+  0% {
+   color: #675682;
+   text-shadow: -2px 3px 0 #e52a6f, -5px 7px 0 #67aeca;
+  }
+  25%{
+   color: #67aeca;
+   text-shadow: -2px 3px 0 #675682, -5px 7px 0 #e52a6f;
+  }
+  50%{
+   color: #e52a6f;
+   text-shadow: -2px 3px 0 #67aeca, -5px 7px 0 #675682;
+  }
+  75%{
+   color: #675682;
+   text-shadow: -2px 3px 0 #e52a6f, -5px 7px 0 #67aeca;
+  }
+  100%{
+   color: #67aeca;
+   text-shadow: -2px 3px 0 #675682, -5px 7px 0 #e52a6f;
+  }
+}

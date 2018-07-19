@@ -1,0 +1,29 @@
+/*==========================================
+  Navigation Bar
+=================*/
+
+.home-navbar{
+
+  position: fixed;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  top: 0;
+  height: 10%;
+  width: 100%;
+  border-bottom-style: solid;
+  border-width: thin;
+  border-color: white;
+  color: #f0ebf4;
+  opacity: 1;
+
+  #home-link-item{
+    color: white;
+    font-size: 30px;
+    margin: 10px;
+    font-family: 'Slabo 27px', serif;
+    color: white;
+    font-weight: 80;
+  }
+
+}

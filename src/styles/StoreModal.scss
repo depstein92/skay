@@ -1,0 +1,265 @@
+/*=============
+ =STORE-MODAL
+=============*/
+
+$background-color: #e52a6f;
+$background-image: url('https://i.pinimg.com/736x/59/00/3f/59003fa3b1a8fe4bc73c851af37c9e58--desktop-wallpapers-iphone-wallpapers-vintage.jpg');
+
+
+@mixin ease-in($animationTime){
+  transition:         $animationTime ease-in;
+  -o-transition:      $animationTime ease-in;
+  -ms-transition:     $animationTime ease-in;
+  -moz-transition:    $animationTime ease-in;
+  -webkit-transition: $animationTime ease-in;
+}
+
+.store td .modal{
+  position:fixed;
+  padding:0;
+  margin:0;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 103vh;
+  background-image: $background-image;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 3;
+
+
+ .modal-main{
+   position: absolute;
+   background: $background-color;
+   border-style: solid;
+   width: 95vw;
+   height: 90vh;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%,-50%);
+   z-index: 4;
+   opacity: 1.5;
+   border-radius: 10%;
+
+
+   button{
+    border-style: solid;
+    position: absolute;
+    background-color: white;
+    color: black;
+    right: 0;
+    top: 0;
+    margin: 0 auto;
+    z-index: 3;
+    opacity: 1;
+  }
+
+  .slider {
+    position: relative;
+    left: 5%;
+    top: 10%;
+    width: 50vw;
+    height: 70vh;
+    border-radius: 20%;
+    opacity: 1;
+  }
+
+  .nextArrow{
+   position: absolute;
+   right: 0;
+   bottom: 50%;
+  }
+
+  .backArrow{
+   position: absolute;
+   left: 0;
+   bottom: 50%;
+  }
+
+  .slide{
+   position: absolute;
+
+   img{
+     width: 50vw;
+     height: 70vh;
+     border-radius: 10%;
+     margin: 0 auto;
+   }
+
+  }
+
+ .item-description{
+
+   position: absolute;
+   display: flex;
+   align-items: center;
+   flex-flow: column;
+   width: 35vw;
+   height: 90vh;
+   right: 0;
+   top: 5%;
+
+
+  .type-of-lash{
+   font-size: 1.5em;
+   font-weight: lighter;
+   position: absolute;
+   top: 10%;
+   text-decoration: underline;
+  }
+
+ .brand-of-lash{
+   font-size: 2em;
+   position: absolute;
+   top: 25%;
+  }
+
+ .rating{
+  position: absolute;
+  top: 35%;
+  left: 50%;
+ }
+
+
+ .rating > span:hover:before {
+   content: "\2605";
+   position: absolute;
+ }
+
+ .rating {
+   unicode-bidi: bidi-override;
+   direction: rtl;
+   position: absolute;
+   bottom: 20%;
+   left: 35%;
+  }
+
+ .rating > span:hover:before,
+ .rating > span:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
+ }
+
+ .amount-in-cart{
+   position: absolute;
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+   top: 69%;
+   left: 35%;
+   width: 10vw;
+   height: 5vh;
+   border-style: solid;
+
+   span{
+     padding: 5%;
+   }
+ }
+
+
+
+ .shipping{
+   position: absolute;
+   top: 48%;
+   left: 20%;
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   flex-flow: column;
+   font-size: 1.3em;
+ }
+
+ .return{
+   position: absolute;
+   top: 48%;
+   right: 20%;
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   flex-flow: column;
+   font-size: 1.3em;
+ }
+
+ .return > span{
+  margin-bottom: .5vh;
+ }
+
+/*=============
+ =STORE-MODAL-BUTTON
+=============*/
+
+.svg-modal {
+  position: absolute;
+  top: 70%;
+  display:block;
+  height: 10%;
+  width: 80%;
+  margin: 10%;
+  padding: 3%;
+  font-weight: 700;
+  font-size: 1em;
+  letter-spacing: .1em;
+  color: #383736;
+  border: .1em #383736 solid;
+  border-radius: .3em;
+  text-transform: uppercase;
+  outline: 0;
+  overflow:hidden;
+  background: none;
+  z-index: 1;
+  cursor: pointer;
+  @include ease-in(0.008s);
+}
+
+.svg-modal{
+  -webkit-transition: all 150ms cubic-bezier(0.445, 0.050, 0.550, 0.950);
+}
+
+.svg-modal:before{
+  position:absolute;
+  content:"";
+  background: url(https://f.cl.ly/items/3H3A0D1N281a2T280F3o/heist.svg) no-repeat center center;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  z-index:-1;
+  opacity:0;
+  -webkit-transition: all 250ms cubic-bezier(0.230, 1.000, 0.320, 1.000);
+ }
+
+.svg-modal:after {
+  content: "";
+  position: absolute;
+  background: pink;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 100%;
+  z-index: -2;
+  -webkit-transition: all 250ms cubic-bezier(0.230, 1.000, 0.320, 1.000);
+ }
+
+.svg-modal:hover{
+  color:white;
+  border: 0px #d19b26 solid;
+}
+.svg-modal:hover:before {
+  opacity: .8;
+}
+.svg-modal:hover:after {
+  top: 0;
+}
+
+.exit-button-modal{
+  position: absolute;
+  top: 0;
+  right: 10%;
+}
+
+
+   }
+
+ }
+
+}

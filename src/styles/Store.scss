@@ -1,0 +1,417 @@
+@import url('https://fonts.googleapis.com/css?family=Great+Vibes|Pacifico|Song+Myung');
+
+
+$primary-color: #e52a6f;
+$secondary-color: #67aeca;
+$ternary-color:  #675682;
+
+@mixin ease-in($animationTime){
+  transition:         $animationTime ease-in;
+  -o-transition:      $animationTime ease-in;
+  -ms-transition:     $animationTime ease-in;
+  -moz-transition:    $animationTime ease-in;
+  -webkit-transition: $animationTime ease-in;
+}
+
+@mixin rotate-color($animationTime){
+  -webkit-animation: rotate-color $animationTime;
+       -moz-animation: rotate-color $animationTime;
+        -ms-animation: rotate-color $animationTime;
+         -o-animation: rotate-color $animationTime;
+            animation: rotate-color $animationTime;
+}
+
+@mixin flicker($animationTime){
+  -webkit-animation: flicker $animationTime;
+       -moz-animation: flicker $animationTime;
+        -ms-animation: flicker $animationTime;
+         -o-animation: flicker $animationTime;
+            animation: flicker $animationTime;
+   animation-iteration-count: infinite;
+}
+
+
+/*================
+   ANIMATIONS
+========*/
+
+@keyframes flicker{
+   0% {
+     opacity:.5;
+  }
+   50% {
+   opacity:1;
+   background: -webkit-linear-gradient($primary-color,$ternary-color);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  }
+   100% {
+   opacity:1;
+   background: -webkit-linear-gradient($primary-color,$ternary-color);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  }
+}
+
+
+@keyframes rotate-color{
+  0% {
+  color: $ternary-color;
+  text-shadow: -2px 3px 0 $primary-color, -5px 7px 0 $secondary-color;
+  }
+  25%{
+  color: $secondary-color;
+  text-shadow: -2px 3px 0 $ternary-color, -5px 7px 0 $primary-color;
+  }
+  50%{
+  color: $primary-color;
+  text-shadow: -2px 3px 0 $secondary-color, -5px 7px 0 $ternary-color;
+  }
+  75%{
+  color: $ternary-color;
+  text-shadow: -2px 3px 0 $primary-color, -5px 7px 0 $secondary-color;
+  }
+  100%{
+  color: $secondary-color;
+  text-shadow: -2px 3px 0 $ternary-color, -5px 7px 0 $primary-color;
+  }
+}
+
+/*================
+   GRID LAYOUT
+===============*/
+
+td {
+  height: 90vh;
+  text-align:  center;
+  vertical-align:  middle;
+  margin: 10%;
+}
+
+table {
+ position: absolute;
+ left: 0%;
+ top: 84%;
+ display: flex;
+ width: 100vw;
+ background-image:
+    linear-gradient(
+      to top right,
+      $secondary-color, $primary-color
+    );
+ border-top: black solid;
+}
+
+.store .store-navbar .items-added{
+padding: 2%;
+border-style: solid;
+border-radius: 80%;
+background-color: $primary-color;
+display: flex;
+align-items: center;
+justify-content: center;
+width: 1vw;
+height: 1vh;
+position: relative;
+top: -34%;
+}
+
+.store-table{
+
+ .row{
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   width: 33vw;
+ }
+
+ tr:nth-child(2){
+  position: absolute;
+  left: 33%;
+  top: 0%;
+ }
+
+ tr:nth-child(3){
+  position: absolute;
+  left: 66%;
+  top: 0%;
+ }
+
+ tr > td > img{
+  max-width: 75%;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: thin;
+ }
+/* affects  */
+ // tr td:hover{
+ //  color: white;
+ // }
+
+ tr > td > img:hover{
+  text-shadow: 0 0 2em rgba(255,255,255,1);
+  border-color: #FFFFFF;
+  max-width: 90%;
+ }
+
+ tr > td > div{
+  font-family: Pacifico;
+  font-size: 1.5em;
+  margin: 10%;
+ }
+
+ tr > td > span{
+  font-family: Sans-serif;
+  font-size: 1em;
+  margin: 10%;
+ }
+
+
+}
+/*===================
+   Store Item Rating
+=====================*/
+
+.rating > span:hover:before {
+   content: "\2605";
+   position: absolute;
+}
+
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
+}
+
+/*==============
+Store-Buttons TODO-Sizes may need adjustment
+========*/
+
+.store-table tr > td > button {
+  position: relative;
+  display:block;
+  height: 10%;
+  width: 80%;
+  margin: 10%;
+  padding: 3%;
+  font-weight: 700;
+  font-size: 1em;
+  letter-spacing: .1em;
+  color: #383736;
+  border: .1em #383736 solid;
+  border-radius: .3em;
+  text-transform: uppercase;
+  outline: 0;
+  overflow:hidden;
+  background: none;
+  z-index: 1;
+  cursor: pointer;
+  @include ease-in(0.08s);
+}
+
+
+.svg{
+  -webkit-transition: all 150ms cubic-bezier(0.445, 0.050, 0.550, 0.950);
+}
+
+.svg:before{
+  position:absolute;
+  content:"";
+  background: url(https://f.cl.ly/items/3H3A0D1N281a2T280F3o/heist.svg) no-repeat center center;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  z-index:-1;
+  opacity:0;
+  -webkit-transition: all 250ms cubic-bezier(0.230, 1.000, 0.320, 1.000);
+}
+
+.svg:after {
+  content: "";
+  position: absolute;
+  background: $primary-color;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 100%;
+  z-index: -2;
+  -webkit-transition: all 250ms cubic-bezier(0.230, 1.000, 0.320, 1.000);
+}
+.svg:hover{
+  color:white;
+  border: 0px #d19b26 solid;
+}
+.svg:hover:before {
+  opacity: .8;
+}
+.svg:hover:after {
+  top: 0;
+}
+
+
+/*==================
+   STORE NAV BAR
+==================*/
+
+.store-navbar{
+
+  width: 100%;
+  border-bottom: solid;
+  height: 15vh;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  position: fixed;
+  color: white;
+  background-color: black;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  top: 0;
+
+ span{
+  display: flex;
+  align-items: center;
+  left: 10%;
+  width: 20%;
+  justify-content: center;
+  font-size: 3em;
+  font-weight: bold;
+  font-family: 'Great Vibes';
+  color: $primary-color;
+  text-shadow: -2px 3px 0 $ternary-color, -5px 7px 0 $secondary-color;
+  animation-iteration-count: infinite;
+  animation-timing-function: step-start;
+ }
+
+ span:hover{
+  @include rotate-color(10s);
+ }
+
+
+ ul{
+  display: flex;
+  list-style-type: none;
+  width: 50%;
+  flex-wrap: non-wrap;
+  margin-left: 0%;
+  align-items: center;
+ }
+
+ ul li{
+  text-decoration: none;
+  font-family: Pacifico;
+  margin-left: 20%;
+  font-size: 1.3em;
+ }
+
+ ul li:nth-child(5):hover{
+  color: white;
+ }
+
+ ul li:hover{
+  cursor: pointer;
+  @include flicker(1.5s);
+ }
+
+ span:hover{
+  cursor: pointer;
+ }
+
+}
+
+
+/*================
+HERO_IMAGE_STORE
+======*/
+
+.store{
+
+ .store-hero-image{
+   position: absolute;
+   top: 15%;
+   left: 0;
+   right: 0;
+   width: 100vw;
+   height: 69vh;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background:     linear-gradient(
+      $ternary-color,
+      rgba(255, 0, 0, 0.45)
+    ),
+    /* bottom, image */
+    url(https://images.pexels.com/photos/137132/pexels-photo-137132.jpeg?auto=compress&cs=tinysrgb&h=650&w=940);
+   background-size: cover;
+   background-repeat: no-repeat;
+ }
+
+
+ .store-hero-image span{
+   text-align: center;
+   font-size: 3em;
+   font-family: Pacifico;
+   text-shadow: -2px 3px 0 #ffffff, -5px 7px 0 #675682;
+ }
+
+
+ .store-hero-image span:nth-child(2){
+   font-size: 1.8em;
+ }
+
+ .store-hero-image .button-container{
+   width: 100%;
+   height: 10%;
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+   position: absolute;
+   bottom: 0;
+   background-color: #ffffff;
+   border-style: none;
+   border-style: thin solid #000000;
+ }
+
+ .store-hero-image .button-container > button{
+   display: flex;
+   border-style: none;
+   align-items: center;
+   background-color: transparent;
+   color: #000000;
+   font-family: 'Song Myung', serif;
+   font-size: 2em;
+ }
+
+ .store-hero-image .button-container > button:hover{
+   color: $primary-color;
+   border-bottom-color: $primary-color;
+ }
+
+ .store-hero-image .button-container > button:active{
+   text-decoration: underline;
+ }
+
+/*=============
+ =STORE-FOOTER
+=============*/
+
+.footer{
+  width: 100%;
+  height: .8%;
+  position: absolute;
+  background-color: #000000;
+  color: white;
+  border-style: none;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+ }
+
+
+}

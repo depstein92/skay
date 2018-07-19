@@ -1,0 +1,66 @@
+/*=======================
+Landing Product Info
+========*/
+
+.landing-product-info{
+  width: 100vw;
+  height: 95vh;
+  border-style: solid;
+  border-width: thin;
+  background-color: inherit;
+
+  div{
+   height: 95vh;
+  }
+  #home-slide-dots{
+    height: 0%;
+  }
+  .slick-dots li button:before {
+    color: white;
+  }
+
+  div:nth-child(2){
+    background-image: url('./images/palm_pink.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  div:nth-child(3){
+    background-image: url('./images/fruit_leaves.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  div:nth-child(4){
+    background-image: url('./images/left_palm.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  span{
+    text-shadow: 0px 3px 0px #b2a98f,
+                   0px 14px 10px rgba(0,0,0,0.15),
+                   0px 24px 2px rgba(0,0,0,0.1),
+                   0px 34px 30px rgba(0,0,0,0.1);
+  }
+
+ span:nth-child(1){
+  font-size: 5em;
+  text-align: center;
+  color: white;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 20%;
+  font-family: 'Pacifico', serif;
+ }
+
+ span:nth-child(2){
+  font-size: 5em;
+  text-align: center;
+  color: white;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  font-family: 'Pacifico', serif;
+ }
+}

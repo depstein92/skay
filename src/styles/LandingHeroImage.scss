@@ -1,0 +1,95 @@
+/*==========================================
+  Landing_Hero_Image_Component
+================*/
+
+.home-landing{
+  min-height: 100vh;
+  min-width: 100vw;
+  background-image: url('./images/pineapple.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100vw;
+  height: auto;
+  position: relative;
+  top: 0;
+  left: 0;
+
+
+  #priestwork-landing{
+    font-family: 'Great Vibes', cursive;
+    font-weight: bold;
+    color: #e52a6f;
+    text-align: center;
+    font-size: 15vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: -4px 3px 0 #675682, -14px 7px 0 #67aeca;
+
+    -webkit-animation: fadein 1.5s;
+       -moz-animation: fadein 1.5s;
+        -ms-animation: fadein 1.5s;
+         -o-animation: fadein 1.5s;
+            animation: fadein 1.5s;
+  }
+
+#home-more-icon {
+  left: 50%;
+  top: 90%;
+  font-size: 1em;
+  position: absolute;
+  width: 6vw;
+  height: 6vh;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  -webkit-animation: fadein 1.5s;
+     -moz-animation: fadein 1.5s;
+      -ms-animation: fadein 1.5s;
+       -o-animation: fadein 1.5s;
+          animation: fadein 1.5s;
+
+  i {
+    color: #f0ebf4;
+    text-shadow: 1px black;
+    margin: 10px;
+  }
+
+  #see-more{
+   font-family: 'Slabo 27px', serif;
+  }
+
+
+ }
+
+}
+
+
+
+/* keyframes*/
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
