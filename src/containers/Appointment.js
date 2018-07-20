@@ -103,7 +103,7 @@ showDays(){
   }
 
   render() {
-
+   console.log(this.props);
    return (
 <div className="month">
  { this.showMonthAndYear() }
@@ -124,4 +124,11 @@ showDays(){
   }
 }
 
-export default Appointment;
+const mapStateToProps = state => {
+  return {
+    Appointment_Set: state.Appointment_Reducer
+  }
+}
+
+
+export default connect(mapStateToProps)(Appointment);

@@ -6,16 +6,7 @@ import createSagaMiddleware from 'redux-saga';
 import rootSaga from './sagas/index';
 import App from './components/app';
 import reducers from './reducers';
-import firebase from 'firebase/app';
 
-firebase.initializeApp({
-  apiKey: process.env.DB_APIKEY,
-  authDomain: process.env.DB_AUTHDOMAIN,
-  databaseURL: process.env.DB_DATABASEURL,
-  projectId: process.env.DB_PROJECTID,
-  storageBucket: process.env.DB_STORAGEBUCKET,
-  messagingSenderId: process.env.DB_MESSAGINGSENDERID
-});
 
 const sagaMiddleware = createSagaMiddleware();
 

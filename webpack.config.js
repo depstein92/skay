@@ -51,6 +51,12 @@ const config = {
   devServer: {
     historyApiFallback: true,
   },
+  node: {
+  net: 'empty',
+  tls: 'empty',
+  dns: 'empty',
+  fs: 'empty'
+},
   plugins: [
    new FriendlyErrorsWebpackPlugin(),
    new UglifyJsPlugin(),
