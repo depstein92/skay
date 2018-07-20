@@ -44,7 +44,7 @@ export function* watchStatueData() {
   yield takeLatest("STATUES_API_REQUEST", statuesSaga);
 }
 
-export function* watchBookAppointmentData(){
+export function* watchBookAppointmentSaga(){
  yield takeLatest("BOOK_APPOINTMENT_REQUEST", bookAppointmentSaga);
 }
 
@@ -57,7 +57,7 @@ function* bookAppointmentSaga(){
        if(err){
          console.log(`Error in bookAppointmentSaga, ${err}`);
        }
-    })
+     })
     yield put({ type: "BOOK_APPOINTMENT_SUCCESS", data: [ success: true ]});
   } catch(e){
     alert(e.message);
@@ -110,6 +110,6 @@ export default function* rootSaga(){
     watchBowlsData(),
     watchKnivesData(),
     watchStatueData(),
-    watchBookAppointmentData()
+    watchBookAppointmentSaga()
   ])
 }
