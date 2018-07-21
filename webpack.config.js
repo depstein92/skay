@@ -1,9 +1,5 @@
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const webpack = require('webpack');
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
-
 
 const config = {
   cache: true,
@@ -18,10 +14,9 @@ const config = {
     rules: [
     {
       test: /\.js$/,
-      exclude: /(node_modules)/,
       use: {
         loader: 'babel-loader',
-        options: { presets: ["react", "es2015", "stage-1"] }
+        options: { presets: ["@babel/preset-env","@babel/preset-react"] }
        }
     },
     {
@@ -51,19 +46,8 @@ const config = {
   devServer: {
     historyApiFallback: true,
   },
-  node: {
-  net: 'empty',
-  tls: 'empty',
-  dns: 'empty',
-  fs: 'empty'
-},
   plugins: [
-   new FriendlyErrorsWebpackPlugin(),
-   new UglifyJsPlugin(),
-   new BundleAnalyzerPlugin({
-     openAnalyzer: false
-  }),
-  new HardSourceWebpackPlugin() /*WEBPACK RELOAD OPTIMIZER */
+   new FriendlyErrorsWebpackPlugin()
  ],
   resolve: {
     extensions: ['.js', '.jsx']

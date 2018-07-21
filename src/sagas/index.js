@@ -1,9 +1,8 @@
 import { takeLatest, take, call, put, all } from "redux-saga/effects";
 import axios from "axios";
-import * as postgres from '../postgres';
+import firebase from 'firebase';
+import ReduxSagaFirebase from 'redux-saga-firebase';
 
-const { database,
-        addAppointment } = postgres;
 
 
 /*=========== HELPER FUNCTIONS ===========*/
@@ -51,13 +50,15 @@ export function* watchBookAppointmentSaga(){
 /*=========== WORKER SAGAS ===========*/
 
 function* bookAppointmentSaga(){
+  const appointmentData = yield take('BOOK_APPOINTMENT_REQUEST');
+  database.addAppointment(appointmentData, (err) => {
+    if(err){
+      console.log(err);
+    }
+   })
   try{
-    const appointmentData = yield take('BOOK_APPOINTMENT_REQUEST'); //this line down could need editing
-    database.addAppointment(appointmentData, (err) => {
-       if(err){
-         console.log(`Error in bookAppointmentSaga, ${err}`);
-       }
-     })
+
+
     yield put({ type: "BOOK_APPOINTMENT_SUCCESS", data: [ success: true ]});
   } catch(e){
     alert(e.message);
