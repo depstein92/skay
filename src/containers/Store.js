@@ -5,6 +5,7 @@ import Store_Search_Modal from './Store_Search_Modal';
 import { connect } from 'react-redux';
 import { CircleLoader } from 'react-spinners';
 import { Modal } from 'semantic-ui-react';
+import { lashs_data, nails_data, accessories_data } from '../store-items.json';
 import '../styles/index.scss'; /*fix webpack*/
 import _ from 'lodash';
 
@@ -21,12 +22,18 @@ constructor(props){
     itemsInCart: 0
   };
 
-  this.renderBowls = this.renderBowls.bind(this);
-  this.renderKnives = this.renderKnives.bind(this);
-  this.renderStatues = this.renderStatues.bind(this);
-  this.getKnivesOnly = this.getKnivesOnly.bind(this);
-  this.getStatuesOnly = this.getStatuesOnly.bind(this);
-  this.getBowlsOnly = this.getBowlsOnly.bind(this);
+  /*
+   BOWLS = NAILS,
+   KNIVES = LASHS,
+   STATUES = ACCESSORIES
+  */
+
+  this.renderNails = this.renderNails.bind(this);
+  this.renderLashs = this.renderLashs.bind(this);
+  this.renderAccessories = this.renderAccessories.bind(this);
+  this.getLashsOnly = this.getLashsOnly.bind(this);
+  this.getAccessoriesOnly = this.getAccessoriesOnly.bind(this);
+  this.getNailsOnly = this.getNailsOnly.bind(this);
   this.getAllItems = this.getAllItems.bind(this);
   this.openModal = this.openModal.bind(this);
   this.closeModal = this.closeModal.bind(this);
@@ -38,20 +45,24 @@ constructor(props){
 
 
 componentDidMount(){
-  this.props.getBowlsImages();
-  this.props.getKnivesImages();
-  this.props.getStatuesImages();
+  this.props.getNailsImages();
+  this.props.getLashsImages();
+  this.props.getAccesoryImages();
 }
+/*
+ BOWLS = NAILS,
+ KNIVES = LASHS,
+ STATUES = ACCESSORIES
+*/
 
-
-getStatuesOnly(){
-  this.setState({ getItem: 'statue' });
+getAccessoriesOnly(){
+  this.setState({ getItem: 'accessories' });
 }
-getBowlsOnly(){
-  this.setState({ getItem: 'bowls' });
+getNailsOnly(){
+  this.setState({ getItem: 'nails' });
 }
-getKnivesOnly(){
-  this.setState({ getItem: 'knives' });
+getLashsOnly(){
+  this.setState({ getItem: 'lashs' });
 }
 getAllItems(){
   this.setState({ getItem: 'all' });
@@ -72,25 +83,18 @@ addToCart(){
   this.setState({ itemsInCart: this.state.itemsInCart + 1 });
 }
 
-
-/* CONNECT TO CMS: <img src={obj} id={obj} />*/
-renderStatues(obj){
- let data = _.drop(obj.data, 990); /*REMOVE ON SAGA CHANGE*/
-
- if(data === null){
-   return (<CircleLoader loading={this.state.loading} />);
-  } else {
-
- const obj = data.map((obj) => {
+renderAccessories(){
+ const accessorieInfo = accessories_data.map((obj) => {
+   let { img, price, style, title, rating, description } = obj;
    return (
-      <td id="cell" key={obj}>
+     <td id="cell" key={obj}>
       { this.state.isModalOpen !== false ?
-        <Store_Modal closeModal={this.closeModal} /> : null }
+        <Store_Modal closeModal={this.closeModal} item_info={obj} /> : null }
        <img
         onClick={this.openModal}
-        src="https://cdn.shopify.com/s/files/1/0250/1519/products/esqido-mink-lashes-bff_ea5c519e-e47b-42bb-81b7-b86fa6c93eb1.jpg?v=1522213887" />
-         <div>Signature Style</div>
-         <div>Title</div>
+        src={img}/>
+         <div>{ style }</div>
+         <div>{ description }</div>
          <div className="rating">
           <span>☆</span>
           <span>☆</span>
@@ -98,34 +102,28 @@ renderStatues(obj){
           <span>☆</span>
           <span>☆</span>
          </div>
-         <span>Statue Price</span>
+         <span>{ price }</span>
          <button className="svg" onClick={this.addToCart}>
             Add to Cart
          </button>
       </td>)
  })
-   return obj;
-    }
- }
+   return accessorieInfo ;
+}
 
-/* CONNECT TO CMS: <img src={obj} id={obj} />*/
-renderBowls(obj){
- let data = _.drop(obj.data, 990); /*REMOVE ON SAGA CHANGE*/
 
- if(data === null){
-   return (<CircleLoader loading={this.state.loading} />);
- } else {
-
- const obj = data.map((obj) => {
+renderNails(){
+ const nailsInfo = nails_data.map((obj) => {
+   let { img, price, style, title, rating } = obj;
    return (
-      <td id="cell" key={obj}>
+     <td id="cell" key={obj}>
         { this.state.isModalOpen !== false ?
-          <Store_Modal closeModal={this.closeModal} /> : null }
+          <Store_Modal closeModal={this.closeModal} item_info={obj} /> : null }
        <img
         onClick={this.openModal}
-        src="https://cdn.shopify.com/s/files/1/0250/1519/products/esqido-mink-lashes-bff_ea5c519e-e47b-42bb-81b7-b86fa6c93eb1.jpg?v=1522213887" />
-         <div>Signature Style</div>
-         <div>Title</div>
+        src={img} />
+         <div>{ style }</div>
+         <div>{ title }</div>
          <div className="rating">
           <span>☆</span>
           <span>☆</span>
@@ -133,34 +131,29 @@ renderBowls(obj){
           <span>☆</span>
           <span>☆</span>
          </div>
-         <span>Bowl Price</span>
+         <span>{ price }</span>
          <button className="svg" onClick={this.addToCart}>
            Add to Cart
         </button>
       </td>)
   })
-   return obj;
+   return nailsInfo;
   }
-}
 
-/* CONNECT TO CMS: <img src={obj} id={obj} />*/
-renderKnives(obj){
-  let data = _.drop(obj.data, 990); /*REMOVE ON SAGA CHANGE*/
 
-  if(data === null){
-    return (<CircleLoader loading={this.state.loading} />);
-  } else{
 
-  const obj = data.map((obj) => {
+renderLashs(){
+  const lashsInfo = lashs_data.map((obj) => {
+    let { img, price, style, title, rating } = obj
    return (
  <td id="cell" key={obj}>
   { this.state.isModalOpen !== false ?
-     <Store_Modal closeModal={this.closeModal} /> : null }
+     <Store_Modal closeModal={this.closeModal} item_info={obj}  /> : null }
   <img
    onClick={this.openModal}
-   src="https://cdn.shopify.com/s/files/1/0250/1519/products/esqido-mink-lashes-bff_ea5c519e-e47b-42bb-81b7-b86fa6c93eb1.jpg?v=1522213887" />
-    <div>Signature Style</div>
-    <div>Title</div>
+   src={img} />
+    <div>{ style}</div>
+    <div>{ title }</div>
     <div className="rating">
      <span>☆</span>
      <span>☆</span>
@@ -168,21 +161,20 @@ renderKnives(obj){
      <span>☆</span>
      <span>☆</span>
     </div>
-    <span>Knife Price</span>
+    <span>{ price }</span>
      <button className="svg" onClick={this.addToCart}>
       Add to Cart
      </button>
  </td>)
   })
-   return obj;
+   return lashsInfo;
  }
-}
+
 
 
  render(){
 
    const { getItem } = this.state;
-
    return(
 <div className="store">
  <div className="store-navbar">
@@ -207,9 +199,9 @@ renderKnives(obj){
     </span>
     <div className="button-container">
      <i onClick={this.openSearchModal} className="fas fa-search fa-2x"></i>
-     <button onClick={this.getStatuesOnly}>Mink Lashs</button>
-     <button onClick={this.getKnivesOnly}>Weaves</button>
-     <button onClick={this.getBowlsOnly}>Nails</button>
+     <button onClick={this.getAccessoriesOnly}>Accessories</button>
+     <button onClick={this.getLashsOnly}>Lashs</button>
+     <button onClick={this.getNailsOnly}>Nails</button>
      <button onClick={this.getAllItems}>Products</button>
     </div>
   </div>
@@ -218,22 +210,22 @@ renderKnives(obj){
  <table className="store-table">
  <tbody>
   <tr className="row">
-   { getItem === 'bowls' && /*operator precedence*/
-     this.renderBowls(this.props.bowlsData) ||
+   { getItem === 'nails' && /*operator precedence*/
+     this.renderNails(this.props.bowlsData) ||
      getItem === 'all' &&
-     this.renderBowls(this.props.bowlsData) }
+     this.renderNails(this.props.bowlsData) }
    </tr>
    <tr className="row">
-   { getItem === 'statue' &&
-     this.renderStatues(this.props.statuesData) ||
+   { getItem === 'accessories' &&
+     this.renderAccessories(this.props.statuesData) ||
      getItem === 'all' &&
-     this.renderStatues(this.props.statuesData) }
+     this.renderAccessories(this.props.statuesData) }
    </tr>
    <tr className="row">
-   { getItem === 'knives' &&
-      this.renderKnives(this.props.knivesData) ||
+   { getItem === 'lashs' &&
+      this.renderLashs(this.props.knivesData) ||
       getItem === 'all' &&
-      this.renderKnives(this.props.knivesData) }
+      this.renderLashs(this.props.knivesData) }
    </tr>
    <div className="footer">
     <SocialMediaIcons />
@@ -254,9 +246,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-   getBowlsImages: () => dispatch({ type: "BOWLS_API_REQUEST" }),
-   getKnivesImages: () => dispatch({ type: "KNIVES_API_REQUEST" }),
-   getStatuesImages: () => dispatch({ type: "STATUES_API_REQUEST" })
+   getNailsImages: () => dispatch({ type: "NAILS_API_REQUEST" }),
+   getLashsImages: () => dispatch({ type: "LASHS_API_REQUEST" }),
+   getAccesoryImages: () => dispatch({ type: "ACCESSORIES_API_REQUEST" })
   }
 }
 

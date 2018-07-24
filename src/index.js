@@ -2,26 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
-import createSagaMiddleware from 'redux-saga';
-import rootSaga from './sagas/index';
+import ReduxPromise from 'redux-promise';
 import App from './components/app';
 import reducers from './reducers';
+require('dotenv').config({path: './.env' });
 
+const { error } = dotenv.config();
+console.log(error);
 
-const sagaMiddleware = createSagaMiddleware();
-
-const reduxDevTools =
-  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-  let store = createStore(
-    reducers,
-    applyMiddleware(sagaMiddleware)
-  );
-
-sagaMiddleware.run(rootSaga);
+const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={createStoreWithMiddleware(reducers)}>
     <App />
   </Provider>
   , document.querySelector('.container'));

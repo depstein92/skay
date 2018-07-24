@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import * as actions from '../actions/index';
 import { connect } from 'react-redux';
+import {  bindActionCreators } from 'redux';
 
 class Appointment_Form extends Component{
   constructor(props){
@@ -30,18 +32,13 @@ class Appointment_Form extends Component{
 
   onFormSubmit(){
     let { email, firstName, lastName } = this.state;
-    let alphabet  = ['A', 'B', 'C','D','E', 'F', 'G', 'H',
-    'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S',
-    'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-    let char = alphabet[Math.floor(Math.random() * 28)]
-    let num = `${ Math.floor(Math.random() * 1000)}`;
-    let id = `_${char}${num}`;
-    this.props.bookAppointment(id, email, firstName, lastName);
+    let { book } = this.props;
+    book(email, firstName, lastName);
   }
 
   render(){
     let { closeModal, timeSelected, dayselected, monthselected } = this.props;
-    let { email, firstName, lastName } =this.state;
+    let { email, firstName, lastName } = this.state;
 
     return(
       <div className="appointment-form-background">
@@ -67,11 +64,9 @@ class Appointment_Form extends Component{
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    bookAppointment: (id, email, firstName, lastName) =>
-     dispatch({ type: "BOOK_APPOINTMENT_REQUEST",  payload: { id, email, firstName, lastName } })
-  }
+
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({ book: actions.bookAppointment }, dispatch);
 }
 
 

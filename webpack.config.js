@@ -1,4 +1,5 @@
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 const webpack = require('webpack');
 
 const config = {
@@ -46,8 +47,15 @@ const config = {
   devServer: {
     historyApiFallback: true,
   },
+  node: {
+    fs: 'empty',
+  },
   plugins: [
-   new FriendlyErrorsWebpackPlugin()
+   new FriendlyErrorsWebpackPlugin(),
+   new Dotenv({
+     path: './.env', // Path to .env file (this is the default)
+     safe: true // load .env.example (defaults to "false" which does not use dotenv-safe)
+   })
  ],
   resolve: {
     extensions: ['.js', '.jsx']

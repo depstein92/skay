@@ -103,7 +103,6 @@ showDays(){
   }
 
   render() {
-   console.log(this.props);
    return (
 <div className="month">
  { this.showMonthAndYear() }
