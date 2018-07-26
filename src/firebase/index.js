@@ -1,16 +1,14 @@
 import firebase from 'firebase';
-require('dotenv').config({path: '../.env' });
+/*this file is in git ignore!!!!!*/
 
  const myFirebase = firebase.initializeApp({
-   apiKey: process.env.DB_APIKEY,
-   authDomain: process.env.DB_AUTHDOMAIN,
-   databaseURL: process.env.DB_DATABASEURL,
-   projectId: process.env.DB_PROJECTID,
-   storageBucket: process.env.DB_STORAGEBUCKET,
-   messagingSenderId: process.env.DB_MESSAGINGSENDERID
+  apiKey: "AIzaSyAMgC6DM3NAjVFCeFmtnAX2gfqFQMpaZ_o",
+  authDomain: "skay-a1f4c.firebaseapp.com",
+  databaseURL: "https://skay-a1f4c.firebaseio.com",
+  projectId: "skay-a1f4c",
+  storageBucket: "skay-a1f4c.appspot.com",
+  messagingSenderId: "1018244305391"
 });
-
-console.log('apikey', process.env.apiKey);
 
 const fireDatabase = myFirebase.database();
 

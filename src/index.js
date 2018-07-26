@@ -5,10 +5,6 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import ReduxPromise from 'redux-promise';
 import App from './components/app';
 import reducers from './reducers';
-require('dotenv').config({path: './.env' });
-
-const { error } = dotenv.config();
-console.log(error);
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 

@@ -10,12 +10,14 @@ class Appointment_Form extends Component{
     this.state = {
        email: '',
        firstName: '',
-       lastName: ''
+       lastName: '',
+       time: ''
     };
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangeFirstName = this.onChangeFirstName.bind(this);
     this.onChangeLastName = this.onChangeLastName.bind(this);
+    this.getTimeOfDay = this.getTimeOfDay.bind(this);
   }
 
   onChangeEmail(e){
@@ -29,17 +31,20 @@ class Appointment_Form extends Component{
   onChangeLastName(e){
     this.setState({ lastName: e.target.value });
   }
+  getTimeOfDay(e){
+    this.setState({ time: e.target.dataset.key })
+  }
 
   onFormSubmit(){
     let { email, firstName, lastName } = this.state;
-    let { book } = this.props;
-    book(email, firstName, lastName);
+    let { book, timeSelected, dayselected, monthselected } = this.props;
+    book(email, firstName, lastName, timeSelected, dayselected, monthselected);
   }
 
   render(){
     let { closeModal, timeSelected, dayselected, monthselected } = this.props;
     let { email, firstName, lastName } = this.state;
-
+    console.log(this.props);
     return(
       <div className="appointment-form-background">
         <div className="appointment-form-exit" onClick={closeModal}>
