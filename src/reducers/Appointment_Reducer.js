@@ -3,13 +3,14 @@
 const initialState = {
   error: null,
   data: null,
-  fetching: false
+  fetching: false,
+  isItem: null
 };
 
 function Appointment_Reducer(state = initialState, action){
   switch(action.type){
     case "BOOK_APPOINTMENT_REQUEST":
-      return { ...state, fetching: true, error: null };
+      return { ...state, fetching: true, error: null, what: 'what' };
       break;
     case "BOOK_APPOINTMENT_SUCCESS":
       return { ...state, fetching: false, error: null, data: action.data };

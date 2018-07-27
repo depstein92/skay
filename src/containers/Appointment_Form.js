@@ -44,7 +44,6 @@ class Appointment_Form extends Component{
   render(){
     let { closeModal, timeSelected, dayselected, monthselected } = this.props;
     let { email, firstName, lastName } = this.state;
-    console.log(this.props);
     return(
       <div className="appointment-form-background">
         <div className="appointment-form-exit" onClick={closeModal}>

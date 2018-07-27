@@ -49,6 +49,7 @@
     "lodash": "^4.17.5",
     "node-sass": "^4.8.3",
     "react": "^16.3.2",
+    "react-cookie": "^2.2.0",
     "react-dom": "^16.3.2",
     "react-flatpickr": "^3.6.4",
     "react-hot-loader": "^4.1.2",

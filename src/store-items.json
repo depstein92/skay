@@ -115,24 +115,58 @@
  "accessories_data": [
      {
      "img": "https://cdn.shopify.com/s/files/1/0250/1519/products/esqido-mink-lashes-bff_ea5c519e-e47b-42bb-81b7-b86fa6c93eb1.jpg?v=1522213887",
-     "price": "30.00",
-     "style": "Accesories",
-     "description": "Nail Kit and Accesories",
-     "item_description": "Glue, Files, Pedi-Foam"
+     "price": "20.00",
+     "style": "Signature-Nails",
+     "title": "Yellow",
+     "rating": "4",
+     "description": "Nails that are are meant for those that love yellow",
+     "item_description": "Comes with four pair of Nails"
      },
      {
      "img": "https://cdn.shopify.com/s/files/1/0250/1519/products/esqido-mink-lashes-bff_ea5c519e-e47b-42bb-81b7-b86fa6c93eb1.jpg?v=1522213887",
-     "price": "30.00",
-     "style": "Accesories",
-     "description": "Lash Guide for beginners",
-     "item_description": "This Lash Guide written by Naomi Apoit covers everything you need to know"
+     "price": "20.00",
+     "style": "Signature-Nails",
+     "title": "Yellow",
+     "rating": "4",
+     "description": "Nails that are are meant for those that love yellow",
+     "item_description": "Comes with four pair of Nails"
      },
      {
      "img": "https://cdn.shopify.com/s/files/1/0250/1519/products/esqido-mink-lashes-bff_ea5c519e-e47b-42bb-81b7-b86fa6c93eb1.jpg?v=1522213887",
-     "price": "30.00",
-     "style": "Accesories",
-     "description": "Nail Guide",
-     "item_description": "This Nail Guide written by Naomi Apoit covers everything you need to know"
+     "price": "20.00",
+     "style": "Signature-Nails",
+     "title": "Yellow",
+     "rating": "4",
+     "description": "Nails that are are meant for those that love yellow",
+     "item_description": "Comes with four pair of Nails"
+     },
+     {
+     "img": "https://cdn.shopify.com/s/files/1/0250/1519/products/esqido-mink-lashes-bff_ea5c519e-e47b-42bb-81b7-b86fa6c93eb1.jpg?v=1522213887",
+     "price": "20.00",
+     "style": "Signature-Nails",
+     "title": "Yellow",
+     "rating": "4",
+     "description": "Nails that are are meant for those that love yellow",
+     "item_description": "Comes with four pair of Nails"
+     },
+     {
+     "img": "https://cdn.shopify.com/s/files/1/0250/1519/products/esqido-mink-lashes-bff_ea5c519e-e47b-42bb-81b7-b86fa6c93eb1.jpg?v=1522213887",
+     "price": "20.00",
+     "style": "Signature-Nails",
+     "title": "Yellow",
+     "rating": "4",
+     "description": "Nails that are are meant for those that love yellow",
+     "item_description": "Comes with four pair of Nails"
+     },
+     {
+     "img": "https://cdn.shopify.com/s/files/1/0250/1519/products/esqido-mink-lashes-bff_ea5c519e-e47b-42bb-81b7-b86fa6c93eb1.jpg?v=1522213887",
+     "price": "20.00",
+     "style": "Signature-Nails",
+     "title": "Yellow",
+     "rating": "4",
+     "description": "Nails that are are meant for those that love yellow",
+     "item_description": "Comes with four pair of Nails"
      }
+
  ]
 }

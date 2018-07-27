@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import SocialMediaIcons from '../components/Social_Media_Icons';
+import { Link } from 'react-router-dom';
 import Store_Modal from './Store_Modal';
+import { getItemInfo }from '../actions/index';
 import Store_Search_Modal from './Store_Search_Modal';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { CircleLoader } from 'react-spinners';
-import { Modal } from 'semantic-ui-react';
+import { withCookies, Cookies } from 'react-cookie';
 import { lashs_data, nails_data, accessories_data } from '../store-items.json';
 import '../styles/index.scss'; /*fix webpack*/
 import _ from 'lodash';
@@ -22,12 +25,6 @@ constructor(props){
     itemsInCart: 0
   };
 
-  /*
-   BOWLS = NAILS,
-   KNIVES = LASHS,
-   STATUES = ACCESSORIES
-  */
-
   this.renderNails = this.renderNails.bind(this);
   this.renderLashs = this.renderLashs.bind(this);
   this.renderAccessories = this.renderAccessories.bind(this);
@@ -40,20 +37,9 @@ constructor(props){
   this.openSearchModal = this.openSearchModal.bind(this);
   this.closeSearchModal = this.closeSearchModal.bind(this);
   this.addToCart = this.addToCart.bind(this);
+  this.setCookie = this.setCookie.bind(this);
   }
 
-
-
-componentDidMount(){
-  this.props.getNailsImages();
-  this.props.getLashsImages();
-  this.props.getAccesoryImages();
-}
-/*
- BOWLS = NAILS,
- KNIVES = LASHS,
- STATUES = ACCESSORIES
-*/
 
 getAccessoriesOnly(){
   this.setState({ getItem: 'accessories' });
@@ -79,13 +65,18 @@ openSearchModal(){
 closeSearchModal(){
   this.setState({ isSearchModalOpen: false });
 }
-addToCart(){
+setCookie(info){
+
+}
+addToCart(event){
+  this.props.sendItemInfo(event.target.dataset.key);
   this.setState({ itemsInCart: this.state.itemsInCart + 1 });
 }
 
 renderAccessories(){
  const accessorieInfo = accessories_data.map((obj) => {
    let { img, price, style, title, rating, description } = obj;
+   let passInfo = Object.values(obj);
    return (
      <td id="cell" key={obj}>
       { this.state.isModalOpen !== false ?
@@ -94,7 +85,7 @@ renderAccessories(){
         onClick={this.openModal}
         src={img}/>
          <div>{ style }</div>
-         <div>{ description }</div>
+         <div>{ title }</div>
          <div className="rating">
           <span>☆</span>
           <span>☆</span>
@@ -103,7 +94,7 @@ renderAccessories(){
           <span>☆</span>
          </div>
          <span>{ price }</span>
-         <button className="svg" onClick={this.addToCart}>
+         <button className="svg" data-key={passInfo} onClick={this.addToCart}>
             Add to Cart
          </button>
       </td>)
@@ -115,6 +106,7 @@ renderAccessories(){
 renderNails(){
  const nailsInfo = nails_data.map((obj) => {
    let { img, price, style, title, rating } = obj;
+   let passInfo = Object.values(obj);
    return (
      <td id="cell" key={obj}>
         { this.state.isModalOpen !== false ?
@@ -132,7 +124,7 @@ renderNails(){
           <span>☆</span>
          </div>
          <span>{ price }</span>
-         <button className="svg" onClick={this.addToCart}>
+         <button className="svg" data-key={passInfo} onClick={this.addToCart}>
            Add to Cart
         </button>
       </td>)
@@ -145,6 +137,7 @@ renderNails(){
 renderLashs(){
   const lashsInfo = lashs_data.map((obj) => {
     let { img, price, style, title, rating } = obj
+    let passInfo = Object.values(obj);
    return (
  <td id="cell" key={obj}>
   { this.state.isModalOpen !== false ?
@@ -162,7 +155,7 @@ renderLashs(){
      <span>☆</span>
     </div>
     <span>{ price }</span>
-     <button className="svg" onClick={this.addToCart}>
+     <button className="svg" data-key={passInfo} onClick={this.addToCart}>
       Add to Cart
      </button>
  </td>)
@@ -173,7 +166,6 @@ renderLashs(){
 
 
  render(){
-
    const { getItem } = this.state;
    return(
 <div className="store">
@@ -185,7 +177,9 @@ renderLashs(){
      <li>About</li>
      <li>Appointment</li>
      <li>
-      <i className="fas fa-shopping-bag fa-2x"></i>
+       <Link to={"/checkout"}>
+        <i className="fas fa-shopping-bag fa-2x"></i>
+       </Link>
        Bag
      </li>
      <div className="items-added">
@@ -211,21 +205,21 @@ renderLashs(){
  <tbody>
   <tr className="row">
    { getItem === 'nails' && /*operator precedence*/
-     this.renderNails(this.props.bowlsData) ||
+     this.renderNails() ||
      getItem === 'all' &&
-     this.renderNails(this.props.bowlsData) }
+     this.renderNails() }
    </tr>
    <tr className="row">
    { getItem === 'accessories' &&
-     this.renderAccessories(this.props.statuesData) ||
+     this.renderAccessories() ||
      getItem === 'all' &&
-     this.renderAccessories(this.props.statuesData) }
+     this.renderAccessories() }
    </tr>
    <tr className="row">
    { getItem === 'lashs' &&
-      this.renderLashs(this.props.knivesData) ||
+      this.renderLashs() ||
       getItem === 'all' &&
-      this.renderLashs(this.props.knivesData) }
+      this.renderLashs() }
    </tr>
    <div className="footer">
     <SocialMediaIcons />
@@ -238,18 +232,12 @@ renderLashs(){
 
 const mapStateToProps = state => {
   return {
-    knivesData: state.Knives_Reducer,
-    bowlsData: state.Bowls_Reducer,
-    statuesData: state.Statues_Reducer,
+    storeData: state.Store_Reducer
   }
 }
 
 const mapDispatchToProps = dispatch => {
-  return {
-   getNailsImages: () => dispatch({ type: "NAILS_API_REQUEST" }),
-   getLashsImages: () => dispatch({ type: "LASHS_API_REQUEST" }),
-   getAccesoryImages: () => dispatch({ type: "ACCESSORIES_API_REQUEST" })
-  }
+  return bindActionCreators({ sendItemInfo: getItemInfo }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Store);
