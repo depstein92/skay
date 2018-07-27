@@ -15,6 +15,7 @@ class Book_Appointment extends React.Component{
 
     this.state = {
       isModalOpen: false,
+      loading: false,
       time: '' };
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -29,68 +30,39 @@ class Book_Appointment extends React.Component{
     this.setState({ isModalOpen: false });
   }
 
+
   renderTimes(){
 
-    let databaseRef = fireDatabase.ref("Appointment"),
+    const databaseRef = fireDatabase.ref("Appointment"),
         times = ['9AM', '10AM', '11AM', '12AM', '1PM', '2PM', '3PM', '4PM', '5PM'],
-        bookedTimes = [],
-        doesTimeMatch,
-        doesMonthMatch,
-        doesDayMatch
-
-    let { currentDay: day, currentMonth: month } = this.props.match.params;
-
+        bookedTimes = [];
+    const { day, month } = this.props.match.params;
+    const parsedDay = JSON.parse(day);
     const getFBData = (callback) => {
       databaseRef.orderByValue().on("value", snapshot => {
           callback(snapshot.val());
         })
      }
 
-    getFBData(obj => {
-        let { monthSelected, daySelected, timeSelected } = obj;
-        let dayArr = [],
-            monthArr = [],
-            timeArr = [];
-
-        console.log('this is obj', obj);
-        monthArr.push(monthSelected);
-        dayArr.push(daySelected);
-        timeArr.push(timeSelected);
-
-        for(let i = 0; i < monthArr; i++){
-          if(monthArr[i] === currentMonth){
-            if(dayArr[i] === currentDay){
-              if(timeArr[i] === timeSelected){
-
-              }
-            }
-          }
-        }
-
+    getFBData(snapshot => {
+        times.forEach((time) => {
+          if(snapshot.timeSelected === time && month === snapshot.monthSelected
+              && parsedDay === snapshot.daySelected){
+               bookedTimes.push(
+                    <li className="time">
+                    {time}{'\u00A0'}Appointment Booked<hr/>
+                   </li>
+               )
+             } else {
+               bookedTimes.push(
+                    <li onClick={this.openModal}
+                        data-time={time}
+                        className="time">{time}<hr/>
+                   </li>
+               )
+             }
+        })
     });
-
-    // const compare = () => {
-    //      times.forEach((time) => {
-    //        if(snapshot.timeSelected === time && params_Month === snapshot.monthSelected
-    //            && params_Day === snapshot.daySelected){
-    //             bookedTimes.push(
-    //                  <li onClick={this.openModal}
-    //                      data-time={time}
-    //                      className="time">{time}Appointment Booked<hr/>
-    //                 </li>
-    //             )
-    //           } else {
-    //             bookedTimes.push(
-    //                  <li onClick={this.openModal}
-    //                      data-time={time}
-    //                      className="time">{time}<hr/>
-    //                 </li>
-    //             )
-    //           }
-    //      })
-    // }
-
-     //compare();
       return bookedTimes;
    }
 
@@ -117,7 +89,9 @@ class Book_Appointment extends React.Component{
        dayselected={day}
        monthselected={month} /> }
        <SocialMediaIcons />
+       <ul className="time-zones">
        { this.renderTimes() }
+       </ul>
     </div>
     )
   }

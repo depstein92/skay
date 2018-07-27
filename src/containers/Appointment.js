@@ -12,7 +12,8 @@ class Appointment extends Component {
     this.state = {
       date: new Date(),
       month: 0,
-      day: 1
+      day: 1,
+      nextYear: 0
     };
    this.showMonthAndYear = this.showMonthAndYear.bind(this);
    this.showDays = this.showDays.bind(this);
@@ -22,30 +23,44 @@ class Appointment extends Component {
   }
 
  addMonth(){
+  let date = new Date(),
+      dateMonth = date.getMonth(),
+      monthPlus = dateMonth + this.state.month;
+
+  if(monthPlus === 12){
+   this.setState({ month: 0 });
+  } else {
    this.setState({ month: this.state.month + 1 });
   }
+ }
 
  subMonth(){
-   this.setState({ month: this.state.month - 1 });
+   let date = new Date(),
+       dateMonth = date.getMonth(),
+       monthPlus = dateMonth + this.state.month
+
+   if(monthPlus <= dateMonth){
+      return;
+   } else {
+      this.setState({ month: this.state.month - 1 });
+   }
   }
 
  getDay(e){
    this.setState({ day: e.target.dataset.key });
   }
 
-
  showMonthAndYear(){
 
-  let months = ['January','Febuary',
-   'March', 'April', 'May',
-   'June', 'July', 'August',
-   'September', 'October', 'November',
+  let months = ['January','Febuary','March', 'April', 'May',
+   'June', 'July', 'August','September', 'October', 'November',
    'December' ];
 
   let date = new Date(),
       dateMonth = date.getMonth(),
       dateYear = date.getYear(),
-      { month } = this.state;
+      { month } = this.state,
+      monthPlus = dateMonth + month
 
   return (
    <ul>
@@ -54,6 +69,7 @@ class Appointment extends Component {
      <li>{ months[ dateMonth + month ] }<br />
      <span> { date.getFullYear() }</span></li>
    </ul>)
+
   }
 
 
@@ -78,7 +94,6 @@ showDays(){
  for(let i = 1; i < currentMonth; i++){
 
    if(i === todaysDate){
-
     arr.push(
      <Link to={`/book_appointment/${day}/${monthInString}`}
            data-key={i}
@@ -87,16 +102,20 @@ showDays(){
           <span data-key={i}>{ i }</span>
        </li>
      </Link>)
+   } else if(i < todaysDate){
+     arr.push(
+       <li data-key={i} key={ i }>
+         <span data-key={i}>{ i }</span>
+        </li>);
    } else {
-
-    arr.push(
-    <Link to={`/book_appointment/${day}/${monthInString}`}
-          data-key={i}
-          onMouseOver={ this.getDay }>
-      <li data-key={i} key={ i }>
-        <span data-key={i}>{ i }</span>
-       </li>
-    </Link>);
+     arr.push(
+     <Link to={`/book_appointment/${day}/${monthInString}`}
+           data-key={i}
+           onMouseOver={ this.getDay }>
+       <li data-key={i} key={ i }>
+         <span data-key={i}>{ i }</span>
+        </li>
+     </Link>);
       }
    }
     return arr;

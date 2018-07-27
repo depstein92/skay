@@ -44,6 +44,73 @@
       background-color: black;
       border-radius: 5%;
 
+      .date-time-info{
+        color: white;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        font-size: 3em;
+        border-bottom-style: solid;
+        align-items: baseline;
+        height: 10vh;
+      }
+      label{
+        color: white;
+        font-size: 2em;
+      }
+
+      .email-label{
+        position: absolute;
+        left: 5%;
+        top: 25%;
+      }
+      .firstName-label{
+        position: absolute;
+        margin-top: 6%;
+        margin-left: 5%;
+      }
+      .lastName-label{
+        position: absolute;
+        margin-top: 5%;
+        left: 5%;
+      }
+
+      input{
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+      }
+
+      .email-input{
+        margin-top: 10%;
+        margin-left: 5%;
+        height: 5%;
+        width: 50%;
+      }
+      .firstName-input{
+        margin-top: 10%;
+        margin-left: 5%;
+        height: 5%;
+        width: 50%;
+      }
+      .lastName-input{
+        width: 50%;
+        margin-top: 10%;
+        margin-left: 5%;
+        height: 5%;
+      }
+      .submit{
+        position: absolute;
+        margin-top: 5%;
+        height: 5%;
+        width: 10%;
+        font-size: 1em;
+        left: 5%;
+        &:hover{
+          cursor: pointer;
+        }
+      }
+
     }
   }
 

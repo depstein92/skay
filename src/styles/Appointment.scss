@@ -1,8 +1,11 @@
 
+*{
+  list-style-type: none;
+}
+
 $primary-color: #e52a6f;
 $secondary-color: #675682;
 $ternary-color: #67aeca;
-
 
 @mixin rotate-color($animationTime){
   -webkit-animation: rotate-color $animationTime;
@@ -17,7 +20,7 @@ $ternary-color: #67aeca;
   padding: 70px 25px;
   width: 100vw;
   height: 100vh;
-  background: #1abc9c;
+  background: $primary-color;
   text-align: center;
 
 
@@ -29,7 +32,7 @@ $ternary-color: #67aeca;
     }
 
     ul li {
-        color: white;
+        color: $ternary-color;
         font-size: 20px;
         text-transform: uppercase;
         letter-spacing: 3px;
@@ -38,11 +41,13 @@ $ternary-color: #67aeca;
     .prev {
         float: left;
         padding-top: 10px;
+        cursor: pointer;
     }
 
     .next {
         float: right;
         padding-top: 10px;
+        cursor: pointer;
     }
 
     /* Next button */
@@ -52,7 +57,7 @@ $ternary-color: #67aeca;
 .weekdays {
     margin: 0;
     padding: 10px 0;
-    background-color:#ddd;
+    background-color:$secondary-color;
 }
 
 .weekdays li {
@@ -65,7 +70,7 @@ $ternary-color: #67aeca;
 /* Days (1-31) */
 .days {
     padding: 10px 0;
-    background: #eee;
+    background: -webkit-linear-gradient($primary-color,$ternary-color);
     margin: 0;
     height: 85vh;
 

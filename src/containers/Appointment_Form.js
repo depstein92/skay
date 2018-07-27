@@ -50,19 +50,26 @@ class Appointment_Form extends Component{
         <div className="appointment-form-exit" onClick={closeModal}>
           Exit
         </div>
-        <ul className="date-time-info">
-         <li>{ timeSelected }</li>
-         <li>{ dayselected }</li>
-         <li>{ monthselected }</li>
-        </ul>
         <form className="appointment-form" onSubmit={this.onFormSubmit}>
+        <ul className="date-time-info">
+         <li>{ monthselected }</li>
+         <li>{`${ dayselected }th`}</li>
+         <li>{ timeSelected }</li>
+        </ul>
+          <label className="email-label">Email</label>
           <input name="email" value={ email }
+                 className="email-input"
                  onChange={this.onChangeEmail} />
+          <label className="firstName-label">First Name</label>
           <input name="firstName" value={ firstName }
+                 className="firstName-input"
                  onChange={this.onChangeFirstName} />
+          <label className="lastName-label">Last Name</label>
           <input name="lastName" value={ lastName }
+                 className="lastName-input"
                  onChange={this.onChangeLastName} />
-          <input type="submit" value="Submit" />
+          <input className="submit"
+           type="submit" value="Submit" />
         </form>
       </div>
     );
