@@ -69,7 +69,8 @@ setCookie(info){
 
 }
 addToCart(event){
-  this.props.sendItemInfo(event.target.dataset.key);
+
+  //this.props.sendItemInfo(event.target.dataset.key);
   this.setState({ itemsInCart: this.state.itemsInCart + 1 });
 }
 

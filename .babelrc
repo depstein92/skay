@@ -4,5 +4,5 @@
       "helpers": true,
       "polyfill": true,
       "regenerator": true
-    }], "react-hot-loader/babel" ]
+    }], "react-hot-loader/babel", "emotion"]
 }

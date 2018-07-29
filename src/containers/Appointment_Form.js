@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as actions from '../actions/index';
+import { bookAppointment } from '../actions/index';
 import { connect } from 'react-redux';
 import {  bindActionCreators } from 'redux';
 
@@ -37,7 +37,8 @@ class Appointment_Form extends Component{
 
   onFormSubmit(){
     let { email, firstName, lastName } = this.state;
-    let { book, timeSelected, dayselected, monthselected } = this.props;
+    let { book, timeSelected, dayselected, monthselected, closeModal } = this.props;
+    closeModal();
     book(email, firstName, lastName, timeSelected, dayselected, monthselected);
   }
 
@@ -77,7 +78,7 @@ class Appointment_Form extends Component{
 
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({ book: actions.bookAppointment }, dispatch);
+  return bindActionCreators({ book: bookAppointment }, dispatch);
 }
 
 

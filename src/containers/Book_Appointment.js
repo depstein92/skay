@@ -5,7 +5,8 @@ import { bindActionCreators } from 'redux';
 import fireDatabase from '../firebase/index';
 import Appointment_Form from './Appointment_Form';
 import SocialMediaIcons from '../components/Social_Media_Icons';
-import * as action from '../actions/index';
+import { getBookedDates } from '../actions/index';
+import { DotLoader } from 'react-spinners';
 import _ from 'lodash';
 import '../styles/index.scss';
 
@@ -22,6 +23,10 @@ class Book_Appointment extends React.Component{
     this.renderTimes = this.renderTimes.bind(this);
   }
 
+  componentDidMount(){
+    this.props.getAppointments();
+  }
+
   openModal(e){
     this.setState({ isModalOpen: true, time: e.target.dataset.time });
   }
@@ -30,46 +35,53 @@ class Book_Appointment extends React.Component{
     this.setState({ isModalOpen: false });
   }
 
-
   renderTimes(){
-
-    const databaseRef = fireDatabase.ref("Appointment"),
-        times = ['9AM', '10AM', '11AM', '12AM', '1PM', '2PM', '3PM', '4PM', '5PM'],
-        bookedTimes = [];
     const { day, month } = this.props.match.params;
+    const { getAppointments } = this.props;
+    const { loading } = this.props.bookedAppointmentData;
+    const times = ['9AM', '10AM', '11AM', '12AM', '1PM', '2PM', '3PM', '4PM', '5PM'];
+    const bookedTimes = new Array();
     const parsedDay = JSON.parse(day);
-    const getFBData = (callback) => {
-      databaseRef.orderByValue().on("value", snapshot => {
-          callback(snapshot.val());
-        })
-     }
 
-    getFBData(snapshot => {
-        times.forEach((time) => {
-          if(snapshot.timeSelected === time && month === snapshot.monthSelected
-              && parsedDay === snapshot.daySelected){
-               bookedTimes.push(
-                    <li className="time">
-                    {time}{'\u00A0'}Appointment Booked<hr/>
-                   </li>
-               )
-             } else {
-               bookedTimes.push(
-                    <li onClick={this.openModal}
-                        data-time={time}
-                        className="time">{time}<hr/>
-                   </li>
-               )
-             }
-        })
-    });
-      return bookedTimes;
+       if(loading === true){
+         return (
+           <div className="appointment-loader"
+            style={{ position: 'absolute', top: "50%", left: "50%"}}>
+           <DotLoader loading={ loading } />
+           </div>
+         )
+       } else{
+        const { timeSelected,
+                daySelected,
+                monthSelected } = this.props.bookedAppointmentData.data;
+           times.forEach(time => {
+            if(monthSelected === month){
+              if(daySelected === parsedDay){
+                if(timeSelected === time){
+                  bookedTimes.push(
+                    <li data-time={time}
+                        className="time">{ time }<hr/>
+                        ___Appointment Booked
+                    </li>
+                  )
+                }
+              }
+            } else {
+              bookedTimes.push(
+                <li onClick={this.openModal}
+                    data-time={time}
+                    className="time">{ time }<hr/>
+                </li>
+              )
+            }
+          })
+       }
+       return bookedTimes;
    }
 
   render(){
    let { day, month } = this.props.match.params;
    let { isModalOpen, time } = this.state;
-
     return(
 <div className="appointment-modal">
   <div className="logo">
@@ -97,13 +109,13 @@ class Book_Appointment extends React.Component{
   }
 }
 
-// const mapStateToProps = () => {
-//   return {
-//     isNull: null
-//   }
-// }
-//
-// const mapDispatchToProps = (dispatch) => {
-//  return bindActionCreators({getAppointments: action.getBookedDates}, dispatch);
-// }
-export default Book_Appointment;
+const mapStateToProps = state => {
+  return {
+    bookedAppointmentData: state.Book_Appointment_Reducer
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+ return bindActionCreators({getAppointments: getBookedDates}, dispatch);
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Book_Appointment);
