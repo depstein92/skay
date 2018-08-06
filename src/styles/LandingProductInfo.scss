@@ -1,3 +1,6 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
 /*=======================
 Landing Product Info
 ========*/
@@ -9,6 +12,42 @@ Landing Product Info
   border-width: thin;
   background-color: inherit;
 
+  .women-image{
+    width: 45vw;
+    position: absolute;
+    height: 47vh;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background-image: url('./images/women.jpeg');
+    right: -40%;
+    top: 15vh;
+    border: solid;
+    transform: skewX(5deg);
+
+    &:hover{
+      cursor: pointer;
+    }
+  }
+  .first-item-description{
+    position: absolute;
+    font-size: .7em;
+    display: flex;
+    height: 65vh;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: flex-start;
+    left: 5%;
+    list-style-type: disc;
+    letter-spacing: 0em;
+
+    li{
+      &:hover{
+        cursor: pointer;
+      }
+    }
+  }
   div{
    height: 95vh;
   }

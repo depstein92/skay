@@ -1,4 +1,6 @@
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin")
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const webpack = require('webpack');
 
@@ -47,19 +49,39 @@ const config = {
   devServer: {
     historyApiFallback: true,
   },
-  node: {
-    fs: 'empty',
-  },
+  // optimization: {
+  //   splitChunks: {
+  //     chunks: "all",
+  //     minSize: 0,
+  //     cacheGroups: {
+  //       vendors: {
+  //        test: /[\\/]node_modules[\\/]/,
+  //        priority: -10
+  //       },
+  //       default: {
+  //        minChunks: 2,
+  //        priority: -20,
+  //        reuseExistingChunk: true
+  //       }
+  //     }
+  //   }
+  // },
   plugins: [
    new FriendlyErrorsWebpackPlugin(),
    new Dotenv({
-     path: './.env', // Path to .env file (this is the default)
+     path: '.env', // Path to .env file (this is the default)
      safe: true // load .env.example (defaults to "false" which does not use dotenv-safe)
+   }),
+   new OptimizeCssAssetsPlugin({
+     assetNameRegExp: /\.optimize\.scss$/g,
+     cssProcessor: require('cssnano'),
+     cssProcessorOptions: { discardComments: { removeAll: true } },
+     canPrint: true
    })
  ],
   resolve: {
     extensions: ['.js', '.jsx']
   }
-};
+}
 
 module.exports = config;

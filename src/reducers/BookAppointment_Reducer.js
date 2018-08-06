@@ -8,7 +8,6 @@ const initialState = {
 function Book_Appointment_Reducer(state=initialState, action){
     switch(action.type){
       case 'GET_BOOK_APPOINTMENT_SUCCESS':
-      debugger;
         return { ...state, data: action.payload, loading: false, error: null }
         break;
       case 'GET_BOOK_APPOINTMENT_ERROR':

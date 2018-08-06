@@ -7,7 +7,10 @@ import Checkout from '../containers/Checkout';
 import Book_Appointment from '../containers/Book_Appointment';
 import { hot } from 'react-hot-loader'
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
-
+import { PersistGate } from 'redux-persist/integration/react'
+import { persistor, store } from './../configureStore';
+import createBrowserHistory from "history/createBrowserHistory";
+const history = createBrowserHistory();
 
 class App extends Component {
   render() {

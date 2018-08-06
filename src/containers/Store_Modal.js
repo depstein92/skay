@@ -4,6 +4,7 @@ import { LeftArrow,
          SlideOne,
          SlideTwo,
          SlideThree } from '../components/Store_Modal_Slideshow';
+import '../styles/Store.scss';
 
 class Store_Modal extends React.Component{
 

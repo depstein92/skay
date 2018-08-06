@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import '../styles/LandingAppointment.scss'
 const Landing_Appointment = () => {
   return (
     <div className="landing-appointment">

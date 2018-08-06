@@ -1,5 +1,6 @@
 import React, { Component} from 'react';
 import { Link } from 'react-router-dom';
+import '../styles/LandingBestSeller.scss'
 
 class Landing_Best_Seller extends React.Component{
   constructor(props){

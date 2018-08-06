@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import SocialMediaIcons from '../components/Social_Media_Icons';
 import { Link } from 'react-router-dom';
 import Store_Modal from './Store_Modal';
-import { getItemInfo }from '../actions/index';
+import { getItemInfo, sendItemCheckout }from '../actions/index';
 import Store_Search_Modal from './Store_Search_Modal';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { CircleLoader } from 'react-spinners';
-import { withCookies, Cookies } from 'react-cookie';
 import { lashs_data, nails_data, accessories_data } from '../store-items.json';
-import '../styles/index.scss'; /*fix webpack*/
+import '../styles/Store.scss';
 import _ from 'lodash';
 
 class Store extends React.Component{
@@ -37,7 +36,6 @@ constructor(props){
   this.openSearchModal = this.openSearchModal.bind(this);
   this.closeSearchModal = this.closeSearchModal.bind(this);
   this.addToCart = this.addToCart.bind(this);
-  this.setCookie = this.setCookie.bind(this);
   }
 
 
@@ -65,13 +63,15 @@ openSearchModal(){
 closeSearchModal(){
   this.setState({ isSearchModalOpen: false });
 }
-setCookie(info){
-
-}
 addToCart(event){
-
-  //this.props.sendItemInfo(event.target.dataset.key);
-  this.setState({ itemsInCart: this.state.itemsInCart + 1 });
+  let seperateInfo = event.target.dataset.key.split(',');
+  let { itemsInCart } = this.state;
+  let passInfo = seperateInfo.reduce((acc, cur, i) => {
+        acc[`item_${i}`] = cur;
+        return acc;
+        }, {});
+  this.setState({ itemsInCart: itemsInCart + 1 });
+  this.props.sendItemCheckout(passInfo);
 }
 
 renderAccessories(){
@@ -95,7 +95,9 @@ renderAccessories(){
           <span>☆</span>
          </div>
          <span>{ price }</span>
-         <button className="svg" data-key={passInfo} onClick={this.addToCart}>
+         <button className="svg"
+          data-key={passInfo}
+          onClick={this.addToCart}>
             Add to Cart
          </button>
       </td>)
@@ -125,7 +127,9 @@ renderNails(){
           <span>☆</span>
          </div>
          <span>{ price }</span>
-         <button className="svg" data-key={passInfo} onClick={this.addToCart}>
+         <button className="svg"
+          data-key={passInfo}
+          onClick={this.addToCart}>
            Add to Cart
         </button>
       </td>)
@@ -156,7 +160,9 @@ renderLashs(){
      <span>☆</span>
     </div>
     <span>{ price }</span>
-     <button className="svg" data-key={passInfo} onClick={this.addToCart}>
+     <button className="svg"
+      data-key={passInfo}
+      onClick={this.addToCart}>
       Add to Cart
      </button>
  </td>)
@@ -164,10 +170,9 @@ renderLashs(){
    return lashsInfo;
  }
 
-
-
  render(){
    const { getItem } = this.state;
+
    return(
 <div className="store">
  <div className="store-navbar">
@@ -238,7 +243,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ sendItemInfo: getItemInfo }, dispatch);
+  return bindActionCreators({ sendItemInfo: getItemInfo, sendItemCheckout}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Store);

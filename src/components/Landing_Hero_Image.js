@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import '../styles/LandingHeroImage.scss'
 
 const Landing_Hero_Image = () => {
   return (
@@ -18,10 +18,12 @@ const Landing_Hero_Image = () => {
       <button className="ui circular google plus icon button">
         <i className="google plus icon"></i>
      </button>
+       <ul className="store-navbar">
+         <li>Shop</li>
+         <li>About</li>
+         <li>Appointment</li>
+      </ul>
     </div>
-    <div id="home-more-icon">
-      <i className="fas fa-angle-down fa-6x"></i>
-   </div>
    </div>
   )
 }

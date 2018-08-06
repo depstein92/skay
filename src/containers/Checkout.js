@@ -10,7 +10,7 @@ class Checkout extends React.Component{
   }
 
   displayItemInfo(){
-
+    debugger;
     return(
       <div>This is checkout</div>
     )
@@ -26,10 +26,10 @@ class Checkout extends React.Component{
   }
 }
 
-const mapStateToProps = state => {
-  return {
-   itemInfo: state.Store_Reducer
-  }
-}
+// const mapStateToProps = state => {
+//   return {
+//    itemInfo: state.Store_Reducer
+//   }
+// }
 
-export default connect(mapStateToProps)(Checkout);
+export default Checkout;

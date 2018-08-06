@@ -1,9 +1,40 @@
+@import url('https://fonts.googleapis.com/css?family=Great+Vibes|Slabo+27px|Pacifico|Courgette');
 /*==========================================
   Landing_Hero_Image_Component
 ================*/
 
+$primary-color: #e52a6f;
+$secondary-color: #67aeca;
+$ternary-color:  #675682;
+
+@mixin ease-in($animationTime){
+  transition:         $animationTime ease-in;
+  -o-transition:      $animationTime ease-in;
+  -ms-transition:     $animationTime ease-in;
+  -moz-transition:    $animationTime ease-in;
+  -webkit-transition: $animationTime ease-in;
+}
+
+@mixin rotate-color($animationTime){
+  -webkit-animation: rotate-color $animationTime;
+       -moz-animation: rotate-color $animationTime;
+        -ms-animation: rotate-color $animationTime;
+         -o-animation: rotate-color $animationTime;
+            animation: rotate-color $animationTime;
+}
+
+@mixin flicker($animationTime){
+  -webkit-animation: flicker $animationTime;
+       -moz-animation: flicker $animationTime;
+        -ms-animation: flicker $animationTime;
+         -o-animation: flicker $animationTime;
+            animation: flicker $animationTime;
+   animation-iteration-count: infinite;
+}
+
+
 .home-landing{
-  min-height: 100vh;
+  min-height: 85vh;
   min-width: 100vw;
   background-image: url('./images/pineapple.jpg');
   background-repeat: no-repeat;
@@ -14,6 +45,34 @@
   position: relative;
   top: 0;
   left: 0;
+  box-sizing: border-box;
+
+  ul{
+      justify-content: space-around;
+      align-items: flex-start;
+      font-size: 2.5em;
+      width: 100vw;
+      position: fixed;
+      left: 0;
+      background-color: transparent;
+      color: black;
+      margin-left: 0%;
+      top: 23vh;
+      left: -60vw;
+      display: flex;
+      font-weight: 600;
+      font-family: 'Courgette', serif;
+      flex-wrap: wrap;
+     li{
+      list-style-type: none;
+
+      &:hover{
+        cursor: pointer;
+        text-decoration: none;
+        color:white;
+      }
+    }
+  }
 
 
   #priestwork-landing{

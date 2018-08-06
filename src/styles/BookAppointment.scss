@@ -1,3 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Great+Vibes|Slabo+27px|Pacifico');
+
+
+$primary-color: #e52a6f;
+$secondary-color: #67aeca;
+$ternary-color:  #675682;
+
+@mixin rotate-color($animationTime){
+  -webkit-animation: rotate-color $animationTime;
+       -moz-animation: rotate-color $animationTime;
+        -ms-animation: rotate-color $animationTime;
+         -o-animation: rotate-color $animationTime;
+            animation: rotate-color $animationTime;
+}
+
 .appointment-modal {
   position: absolute;
   width: 100%;

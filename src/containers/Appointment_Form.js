@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bookAppointment } from '../actions/index';
 import { connect } from 'react-redux';
 import {  bindActionCreators } from 'redux';
+import '../styles/BookAppointment.scss'
 
 class Appointment_Form extends Component{
   constructor(props){

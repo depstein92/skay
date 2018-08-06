@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Book_Appointment from './Book_Appointment';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import '../styles/index.scss';
+import '../styles/Appointment.scss'
 
 class Appointment extends Component {
 

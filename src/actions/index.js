@@ -9,6 +9,12 @@ export function getItemInfo(payload){
   }
 }
 
+export function sendItemCheckout(payload){
+  return {
+    type: 'GET_ITEM_CHECKOUT_REQUEST',
+    payload
+  }
+}
 
 export function bookAppointment(email, firstName, lastName, timeSelected, dayselected, monthselected){
    let ref = fireDatabase.ref('Appointment');
@@ -20,18 +26,7 @@ export function bookAppointment(email, firstName, lastName, timeSelected, daysel
      dayselected,
      monthselected
    })
-
 }
-/*GET_BOOK_APPOINTMENT_REQUEST
-  GET_BOOK_APPOINTMENT_SUCCESS
-  GET_BOOK_APPOINTMENT_ERROR*/
-/*
-const databaseRef = fireDatabase.ref('Appointment');
-  databaseRef.on("value", (snapshot) => {
-        dataArr.push(snapshot.val());
-  });
-
-*/
 
 const getData = () => {
   const databaseRef = fireDatabase.ref('Appointment');
@@ -46,6 +41,6 @@ export async function getBookedDates(){
    let appointments = await getData();
    return {
      type: 'GET_BOOK_APPOINTMENT_SUCCESS',
-     payload: [ appointments ]
+     payload: appointments
    }
 }

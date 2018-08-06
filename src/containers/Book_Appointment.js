@@ -8,6 +8,7 @@ import SocialMediaIcons from '../components/Social_Media_Icons';
 import { getBookedDates } from '../actions/index';
 import { DotLoader } from 'react-spinners';
 import _ from 'lodash';
+import '../styles/BookAppointment.scss'
 import '../styles/index.scss';
 
 class Book_Appointment extends React.Component{
@@ -39,11 +40,38 @@ class Book_Appointment extends React.Component{
     const { day, month } = this.props.match.params;
     const { getAppointments } = this.props;
     const { loading } = this.props.bookedAppointmentData;
-    const times = ['9AM', '10AM', '11AM', '12AM', '1PM', '2PM', '3PM', '4PM', '5PM'];
     const bookedTimes = new Array();
-    const parsedDay = JSON.parse(day);
+    const times = [{time: '9AM', month: month, day: day},
+                   {time: '10AM', month: month, day: day},
+                   {time: '11AM', month: month, day: day},
+                   {time: '12AM', month: month, day: day},
+                   {time: '1PM', month: month, day: day},
+                   {time: '2PM', month: month, day: day},
+                   {time: '3PM', month: month, day: day},
+                   {time: '4PM', month: month, day: day},
+                   {time: '5PM', month: month, day: day}];
+
+    const compareDates = (date1, date2) => {
+
+      if(!date2.monthselected ||
+         !date2.dayselected ||
+         !date2.timeSelected){
+        return false;
+      }
+      if(date1.month === date2.monthselected){
+       if(date1.day === date2.dayselected){
+        if(date1.time === date2.timeSelected){
+        return true;
+         }
+       }
+     } else {
+       //debugger;
+       return false;
+     }
+   }
 
        if(loading === true){
+
          return (
            <div className="appointment-loader"
             style={{ position: 'absolute', top: "50%", left: "50%"}}>
@@ -51,33 +79,41 @@ class Book_Appointment extends React.Component{
            </div>
          )
        } else{
-        const { timeSelected,
-                daySelected,
-                monthSelected } = this.props.bookedAppointmentData.data;
-           times.forEach(time => {
-            if(monthSelected === month){
-              if(daySelected === parsedDay){
-                if(timeSelected === time){
-                  bookedTimes.push(
-                    <li data-time={time}
-                        className="time">{ time }<hr/>
-                        ___Appointment Booked
-                    </li>
-                  )
-                }
+         const countTimes = [];
+         times.forEach(dates => {
+           _.mapValues(this.props.bookedAppointmentData.data, (o) => {
+
+             if(!o){ return; }
+
+             if(compareDates(dates, o)){
+               //debugger;
+                countTimes.push(dates.time);
+                bookedTimes.push(
+                  <li data-time={dates.time}
+                      key={dates.time}
+                      className="time">{ dates.time }<hr/>
+                      Appointment Booked
+                  </li>)
+
+             } else {
+               //debugger;
+             if(!countTimes.includes(dates.time)){
+               countTimes.push(dates.time);
+               //debugger;
+               bookedTimes.push(
+                 <li onClick={this.openModal}
+                   key={dates.time}
+                   data-time={dates.time}
+                   className="time">{ dates.time }<hr/>
+               </li>)
               }
-            } else {
-              bookedTimes.push(
-                <li onClick={this.openModal}
-                    data-time={time}
-                    className="time">{ time }<hr/>
-                </li>
-              )
-            }
-          })
-       }
-       return bookedTimes;
-   }
+             }
+           });
+        });
+    }
+        console.log(bookedTimes);
+        return bookedTimes;
+  }
 
   render(){
    let { day, month } = this.props.match.params;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Slider from "react-slick";
+import '../styles/LandingProductInfo.scss'
 
 
 const Landing_Product_Info = () => {
@@ -10,7 +11,7 @@ const Landing_Product_Info = () => {
     speed: 360,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false, /* set to true */
     responsive: [
        {
          breakpoint: 1024,
@@ -57,13 +58,20 @@ const Landing_Product_Info = () => {
     <div className="landing-product-info">
       <Slider {...settings}>
         <div>
-         <span>Look Beautiful always...</span>
+         <span>Look Beautiful always...
+         <ul className="first-item-description">
+          <li>Same day shipping</li>
+          <li>No Appointment Fees</li>
+          <li>Look Flawless</li>
+         </ul>
+         <div className="women-image"></div>
+         </span>
         </div>
         <div>
          <span>Dont miss out on Gorgeous Sales!</span>
         </div>
         <div>
-         <span>More text here!</span>
+         <span>Dont Miss Out on Our Brands!</span>
         </div>
       </Slider>
     </div>

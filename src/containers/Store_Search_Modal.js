@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import '../styles/Store.scss';
 
 class Store_Search_Modal extends React.Component{
 
