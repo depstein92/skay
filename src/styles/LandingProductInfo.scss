@@ -1,9 +1,6 @@
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
-
-/*=======================
-Landing Product Info
-========*/
+$shadow: 0px 3px 0px #b2a98f, 0px 14px 10px rgba(0, 0, 0, 0.15), 0px 24px 2px rgba(0, 0, 0, 0.1), 0px 34px 30px rgba(0, 0, 0, 0.1);
 
 .landing-product-info{
   width: 100vw;
@@ -19,11 +16,12 @@ Landing Product Info
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
-    background-image: url('./images/women.jpeg');
-    right: -40%;
+    background-image: url('./images/women.jpeg') !important;
+    left: 50vw;
     top: 15vh;
     border: solid;
     transform: skewX(5deg);
+    box-shadow: $shadow;
 
     &:hover{
       cursor: pointer;
@@ -48,6 +46,205 @@ Landing Product Info
       }
     }
   }
+
+  .second-item{
+    position: absolute;
+    left: 6%;
+    width: 100vw;
+    height: 50vh;
+    font-size: .9em;
+    list-style-type: disc;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    letter-spacing: 0em;
+    flex-direction: column;
+    top: 8vh;
+
+    li{
+      height: 20%;
+      &:hover{
+        cursor: pointer;
+      }
+  }
+}
+
+.dont-miss-message{
+  text-align: center;
+  height: 15vh;
+  left: 10%;
+  vertical-align: middle;
+  position: relative;
+}
+
+.third{
+  max-width: 90vw;
+  max-height: 45vh;
+  position: absolute;
+  left: 0;
+
+  .firstItem{
+    top: 20vh;
+    width: 30vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 50vh;
+    position: absolute;
+    left: 5vw;
+
+    &:hover{
+      cursor: pointer;
+    }
+
+    img{
+      max-height: 20vh;
+      max-width: 20vw;
+      border-radius: 50%;
+      margin-bottom: 15%;
+      margin-top: -29%;
+      border: solid;
+      box-shadow: $shadow;
+    }
+    .style-type{
+      height: 10vh;
+      font-size: .5em;
+      background: transparent;
+    }
+    .brand-name{
+      height: 10vh;
+      font-size: .5em;
+      background: transparent;
+    }
+    .rating{
+      height: 9vh;
+      font-size: .5em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: -5vh;
+      background: transparent;
+      span{
+        font-size: 1em;
+        height: 0;
+        margin: 0;
+      }
+    }
+    .price{
+      font-size: .7em;
+    }
+  }
+
+    .secondItem{
+      top: 20vh;
+      width: 30vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 50vh;
+      position: absolute;
+      left: 35vw;
+      background: transparent;
+
+      &:hover{
+        cursor: pointer;
+      }
+
+      img{
+        max-height: 20vh;
+        max-width: 20vw;
+        border-radius: 50%;
+        margin-bottom: 15%;
+        margin-top: -29%;
+        border: solid;
+        box-shadow: $shadow;
+      }
+      .style-type{
+        height: 10vh;
+        font-size: .5em;
+        background: transparent;
+      }
+      .brand-name{
+        height: 10vh;
+        font-size: .5em;
+        background: transparent;
+      }
+      .rating{
+        height: 9vh;
+        font-size: .5em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: -5vh;
+        background: transparent;
+        span{
+          font-size: 1em;
+          height: 0;
+          margin: 0;
+        }
+      }
+      .price{
+        font-size: .7em;
+      }
+    }
+
+    .thirdItem{
+      top: 20vh;
+      width: 30vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 50vh;
+      position: absolute;
+      left: 65vw;
+      background: transparent;
+
+      &:hover{
+         cursor: pointer;
+      }
+
+      img{
+        max-height: 20vh;
+        max-width: 20vw;
+        border-radius: 50%;
+        margin-bottom: 15%;
+        margin-top: -29%;
+        border: solid;
+        box-shadow: $shadow;
+      }
+      .style-type{
+        height: 10vh;
+        font-size: .5em;
+        background: transparent;
+      }
+      .brand-name{
+        height: 10vh;
+        font-size: .5em;
+        background: transparent;
+      }
+      .rating{
+        height: 9vh;
+        font-size: .5em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: -5vh;
+        background: transparent;
+        span{
+          font-size: 1em;
+          height: 0;
+          margin: 0;
+        }
+      }
+      .price{
+        font-size: .7em;
+      }
+    }
+}
+
   div{
    height: 95vh;
   }
@@ -69,7 +266,7 @@ Landing Product Info
     background-size: cover;
   }
   div:nth-child(4){
-    background-image: url('./images/left_palm.jpg');
+    background-image: url('./images/lemon.jpg');
     background-repeat: no-repeat;
     background-size: cover;
   }

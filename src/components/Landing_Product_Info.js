@@ -11,7 +11,7 @@ const Landing_Product_Info = () => {
     speed: 360,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: false, /* set to true */
+    autoplay: true, /* set to true */
     responsive: [
        {
          breakpoint: 1024,
@@ -68,10 +68,43 @@ const Landing_Product_Info = () => {
          </span>
         </div>
         <div>
-         <span>Dont miss out on Gorgeous Sales!</span>
+         <span>Dont miss out on Gorgeous Sales!
+         <ul className="second-item">
+          <li>20% off products until 09/0/18 </li>
+          <li>Includes Luxury Brands</li>
+          <li>Includes Skay Brands</li>
+         </ul>
+         </span>
         </div>
         <div>
-         <span>Dont Miss Out on Our Brands!</span>
+         <span>
+         <div className="dont-miss-message">
+         Dont Miss Out on Our Brands!
+         </div>
+         <div className="third">
+          <div className="firstItem">
+           <img
+            src='https://cdn.shopify.com/s/files/1/0250/1519/products/esqido-mink-lashes-bff_ea5c519e-e47b-42bb-81b7-b86fa6c93eb1.jpg?v=1522213887'/>
+             <div className="style-type">Luxury Style</div>
+             <div className="brand-name">Beautiful Blue</div>
+             <span className="price">$25</span>
+           </div>
+           <div className="secondItem">
+            <img
+             src='https://cdn.shopify.com/s/files/1/0250/1519/products/esqido-mink-lashes-bff_ea5c519e-e47b-42bb-81b7-b86fa6c93eb1.jpg?v=1522213887'/>
+              <div className="style-type">Signature Style</div>
+              <div className="brand-name">Tropical</div>
+              <span className="price">$25</span>
+            </div>
+            <div className="thirdItem">
+             <img
+              src='https://cdn.shopify.com/s/files/1/0250/1519/products/esqido-mink-lashes-bff_ea5c519e-e47b-42bb-81b7-b86fa6c93eb1.jpg?v=1522213887'/>
+               <div className="style-type">Luxury Style</div>
+               <div className="brand-name">Red-Beauty</div>
+               <span className="price">$25</span>
+             </div>
+          </div>
+         </span>
         </div>
       </Slider>
     </div>

@@ -9,7 +9,6 @@ import { getBookedDates } from '../actions/index';
 import { DotLoader } from 'react-spinners';
 import _ from 'lodash';
 import '../styles/BookAppointment.scss'
-import '../styles/index.scss';
 
 class Book_Appointment extends React.Component{
   constructor(props){
