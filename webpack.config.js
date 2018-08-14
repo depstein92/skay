@@ -49,13 +49,13 @@ const config = {
   devServer: {
     historyApiFallback: true,
   },
-
   plugins: [
    new FriendlyErrorsWebpackPlugin(),
-   new webpack.DefinePlugin({
-  "process.env": {
-    NODE_ENV: JSON.stringify("production")
-  }, 
+   new Dotenv({
+     path: '.env',
+     safe: false,
+     systemvars: true
+   }),
    new OptimizeCssAssetsPlugin({
      assetNameRegExp: /\.optimize\.scss$/g,
      cssProcessor: require('cssnano'),

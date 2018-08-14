@@ -1,12 +1,15 @@
 import firebase from 'firebase';
 /*this file is in git ignore!!!!!*/
+let h = process.env.DB_APIKEY;
+debugger;
+
  const myFirebase = firebase.initializeApp({
-  apiKey: DB_APIKEY,
-  authDomain: DB_AUTHDOMAIN,
-  databaseURL: DB_DATABASEURL,
-  projectId: DB_PROJECTID,
-  storageBucket: DB_STORAGEBUCKET,
-  messagingSenderId: DB_MESSAGINGSENDERID
+  apiKey: process.env.DB_APIKEY,
+  authDomain: process.env.DB_AUTHDOMAIN,
+  databaseURL: process.env.DB_DATABASEURL,
+  projectId: process.env.DB_PROJECTID,
+  storageBucket: process.env.DB_STORAGEBUCKET,
+  messagingSenderId: process.env.DB_MESSAGINGSENDERID
 });
 
 const fireDatabase = myFirebase.database();
