@@ -49,29 +49,13 @@ const config = {
   devServer: {
     historyApiFallback: true,
   },
-  // optimization: {
-  //   splitChunks: {
-  //     chunks: "all",
-  //     minSize: 0,
-  //     cacheGroups: {
-  //       vendors: {
-  //        test: /[\\/]node_modules[\\/]/,
-  //        priority: -10
-  //       },
-  //       default: {
-  //        minChunks: 2,
-  //        priority: -20,
-  //        reuseExistingChunk: true
-  //       }
-  //     }
-  //   }
-  // },
+
   plugins: [
    new FriendlyErrorsWebpackPlugin(),
-   new Dotenv({
-     path: '.env', // Path to .env file (this is the default)
-     safe: true // load .env.example (defaults to "false" which does not use dotenv-safe)
-   }),
+   new webpack.DefinePlugin({
+  "process.env": {
+    NODE_ENV: JSON.stringify("production")
+  }, 
    new OptimizeCssAssetsPlugin({
      assetNameRegExp: /\.optimize\.scss$/g,
      cssProcessor: require('cssnano'),
