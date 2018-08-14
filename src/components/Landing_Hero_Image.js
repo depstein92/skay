@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/LandingHeroImage.scss'
 
 const Landing_Hero_Image = () => {
   return (
     <div className="home-landing">
-     <div id="priestwork-landing">Skay</div>
+     <div className="Skay_Logo">Skay</div>
      <div id="media-icons-landing">
       <button className="ui circular facebook icon button">
         <i className="facebook icon"></i>
@@ -19,9 +20,21 @@ const Landing_Hero_Image = () => {
         <i className="google plus icon"></i>
      </button>
        <ul className="store-navbar">
-         <li>Shop</li>
-         <li>About</li>
-         <li>Appointment</li>
+        <li>
+         <Link to="/shop">
+           Shop
+         </Link>
+        </li>
+        <li>
+         <Link to="/about">
+           About
+         </Link>
+        </li>
+         <li>
+          <Link to="/appointment">
+           Appointment
+          </Link>
+         </li>
       </ul>
     </div>
    </div>

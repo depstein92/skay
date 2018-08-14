@@ -17,9 +17,8 @@ $ternary-color: #67aeca;
   padding: 70px 25px;
   width: 100vw;
   height: 100vh;
-  background: $primary-color;
+  background: $ternary-color;
   text-align: center;
-
 
 /* Month list */
 
@@ -29,10 +28,11 @@ $ternary-color: #67aeca;
     }
 
     ul li {
-        color: $ternary-color;
+        color: green;
         font-size: 20px;
         text-transform: uppercase;
         letter-spacing: 3px;
+        list-style-type: none;
     }
 /* Previous button inside month header */
     .prev {
@@ -70,6 +70,7 @@ $ternary-color: #67aeca;
     background: -webkit-linear-gradient($primary-color,$ternary-color);
     margin: 0;
     height: 85vh;
+    margin-top: 5%;
 
     li {
         list-style-type: none;
@@ -81,6 +82,7 @@ $ternary-color: #67aeca;
         font-size:12px;
         color: #777;
         padding: 5%;
+        border-radius: 50%;
 
         &:hover{
          background-color: rgb(135, 124, 140);

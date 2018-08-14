@@ -90,7 +90,6 @@ showDays(){
                'November', 'December' ],
      monthInString = months[ dateMonth + month ];
 
-
  for(let i = 1; i < currentMonth; i++){
 
    if(i === todaysDate){
