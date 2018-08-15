@@ -21,7 +21,8 @@ constructor(props){
     getItem: 'all',
     isModalOpen: false,
     isSearchModalOpen: false,
-    itemsInCart: 0
+    itemsInCart: 0,
+    itemListInCart: []
   };
 
   this.renderNails = this.renderNails.bind(this);
@@ -65,13 +66,17 @@ closeSearchModal(){
 }
 addToCart(event){
   let seperateInfo = event.target.dataset.key.split(',');
-  let { itemsInCart } = this.state;
+  let { itemsInCart, itemListInCart } = this.state;
   let passInfo = seperateInfo.reduce((acc, cur, i) => {
         acc[`item_${i}`] = cur;
         return acc;
         }, {});
-  this.setState({ itemsInCart: itemsInCart + 1 });
-  this.props.sendItemCheckout(passInfo);
+        
+  this.setState({
+    itemsInCart: itemsInCart + 1,
+    itemListInCart: itemListInCart.concat([passInfo])
+  });
+  this.props.sendItemCheckout(itemListInCart);
 }
 
 renderAccessories(){

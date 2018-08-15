@@ -64,7 +64,6 @@ class Book_Appointment extends React.Component{
          }
        }
      } else {
-       //debugger;
        return false;
      }
    }
@@ -85,7 +84,6 @@ class Book_Appointment extends React.Component{
              if(!o){ return; }
 
              if(compareDates(dates, o)){
-               //debugger;
                 countTimes.push(dates.time);
                 bookedTimes.push(
                   <li data-time={dates.time}
@@ -95,10 +93,10 @@ class Book_Appointment extends React.Component{
                   </li>)
 
              } else {
-               //debugger;
+
              if(!countTimes.includes(dates.time)){
                countTimes.push(dates.time);
-               //debugger;
+
                bookedTimes.push(
                  <li onClick={this.openModal}
                    key={dates.time}

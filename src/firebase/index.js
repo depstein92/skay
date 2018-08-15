@@ -1,7 +1,6 @@
 import firebase from 'firebase';
 /*this file is in git ignore!!!!!*/
 let h = process.env.DB_APIKEY;
-debugger;
 
  const myFirebase = firebase.initializeApp({
   apiKey: process.env.DB_APIKEY,
