@@ -35,7 +35,9 @@ class Checkout extends React.Component{
 
     if(!data){
       return(
-        <div>Items Timed Out!</div>
+        <div className="items-timed-out">
+          No Items in Cart!
+       </div>
       )
     }
 
