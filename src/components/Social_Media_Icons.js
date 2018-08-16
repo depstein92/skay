@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
-import { Icon } from 'semantic-ui-react';
+import React from 'react';
 
 const SocialMediaIcons = () => {
-  return (
-   <div className="social-media-icons">
-    <Icon circular size={'big'} name="twitter" />
-    <Icon circular size={'big'} name="facebook square" />
-    <Icon circular size={'big'} name="instagram" />
-   </div>
+  return(
+    <div className="social-media-icons">
+      <i className="fab fa-facebook"></i>
+      <i className="fab fa-instagram"></i>
+      <i className="fab fa-twitter-square"></i>
+    </div>
   )
-};
+}
 
 export default SocialMediaIcons;

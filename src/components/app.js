@@ -11,7 +11,6 @@ import { PersistGate } from 'redux-persist/integration/react';
 import PageNotFound from './PageNotFound';
 import { persistor, store } from './../configureStore';
 import createBrowserHistory from "history/createBrowserHistory";
-const history = createBrowserHistory();
 
 class App extends Component {
   render() {
