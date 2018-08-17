@@ -124,8 +124,12 @@ $ternary-color:  #675682;
     font-size: 4em;
     display: flex;
     justify-content: space-evenly;
-    border-style: double;
-    background-color: pink;
+    border-style: solid;
+    background: linear-gradient(
+       $ternary-color,
+       rgba(255, 0, 0, 0.45)
+     ),
+     url('./images/pineapple-skin.jpeg');
     position: absolute;
     width: 100%;
     bottom: 0;

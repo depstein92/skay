@@ -11,25 +11,35 @@ $ternary-color: #67aeca;
          -o-animation: rotate-color $animationTime;
             animation: rotate-color $animationTime;
 }
-
+html, body {
+    height: 100vh;
+    width: 100vw;
+}
 /* Month header */
 .month {
   padding: 70px 25px;
+  margin-bottom: 0;
   width: 100vw;
-  height: 100vh;
-  background: $ternary-color;
-  text-align: center;
+  height: 200%;
+  background: linear-gradient(
+     $secondary-color,
+     rgba(255, 0, 0, 0.45)
+   );
+   background-size: cover;
+   background-repeat: no-repeat;
+   text-align: center;
 
 /* Month list */
 
     ul {
         margin: 0;
         padding: 0;
+        border-style: solid;
     }
 
     ul li {
-        color: green;
-        font-size: 20px;
+        color: black;
+        font-size: 1.5em;
         text-transform: uppercase;
         letter-spacing: 3px;
         list-style-type: none;
@@ -67,10 +77,14 @@ $ternary-color: #67aeca;
 /* Days (1-31) */
 .days {
     padding: 10px 0;
-    background: -webkit-linear-gradient($primary-color,$ternary-color);
+    background: transparent;
     margin: 0;
-    height: 85vh;
-    margin-top: 5%;
+    height: 200%;
+    background: linear-gradient(
+       $secondary-color,
+       rgba(255, 0, 0, 0.45)
+     ),
+     url('./images/pineapple.jpg');
 
     li {
         list-style-type: none;
@@ -78,14 +92,13 @@ $ternary-color: #67aeca;
         width: 13.6%;
         text-align: center;
         border-style: solid;
-        margin-bottom: 5px;
-        font-size:12px;
+        font-size:1.5em;
         color: #777;
         padding: 5%;
         border-radius: 50%;
 
         &:hover{
-         background-color: rgb(135, 124, 140);
+         background-color: pink;
          cursor: pointer;
         }
 /* Highlight the "current" day */

@@ -8,7 +8,7 @@ import SocialMediaIcons from '../components/Social_Media_Icons';
 import { getBookedDates } from '../actions/index';
 import { DotLoader } from 'react-spinners';
 import _ from 'lodash';
-import '../styles/BookAppointment.scss'
+import '../styles/BookAppointment.scss';
 
 class Book_Appointment extends React.Component{
   constructor(props){
@@ -66,6 +66,7 @@ class Book_Appointment extends React.Component{
      } else {
        return false;
      }
+     
    }
 
        if(loading === true){
@@ -95,9 +96,9 @@ class Book_Appointment extends React.Component{
              } else {
 
              if(!countTimes.includes(dates.time)){
-               countTimes.push(dates.time);
+                countTimes.push(dates.time);
 
-               bookedTimes.push(
+                bookedTimes.push(
                  <li onClick={this.openModal}
                    key={dates.time}
                    data-time={dates.time}
@@ -108,7 +109,6 @@ class Book_Appointment extends React.Component{
            });
         });
     }
-        console.log(bookedTimes);
         return bookedTimes;
   }
 
