@@ -71,11 +71,8 @@ addToCart(event){
         acc[`item_${i}`] = cur;
         return acc;
         }, {});
-        
-  this.setState({
-    itemsInCart: itemsInCart + 1,
-    itemListInCart: itemListInCart.concat([passInfo])
-  });
+  this.state.itemListInCart.push(passInfo);
+  this.setState({ itemsInCart: itemsInCart + 1 });
   this.props.sendItemCheckout(itemListInCart);
 }
 

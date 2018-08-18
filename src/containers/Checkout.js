@@ -13,6 +13,7 @@ class Checkout extends React.Component{
     this.displayItems = this.displayItems.bind(this);
     this.addNumOfItems = this.addNumOfItems.bind(this);
     this.subNumOfItems = this.subNumOfItems.bind(this);
+    this.totalPrice = this.totalPrice.bind(this);
   }
 
   addNumOfItems(){
@@ -29,6 +30,18 @@ class Checkout extends React.Component{
     }
   }
 
+  totalPrice(){
+   let { data } = this.props.itemInfo;
+   let total = 0;
+
+   if(!data){ return; }
+
+   let sum = data.forEach(obj => {
+     total += obj.item_1;
+   });
+   debugger;
+   return total;
+ }
 
   displayItems(){
     let { data } = this.props.itemInfo;
@@ -81,6 +94,9 @@ class Checkout extends React.Component{
       <CheckOutHeader />
       <div className="checkout-cart">
       { this.displayItems() }
+      </div>
+      <div className="total-price">
+        { }
       </div>
       <SocialMediaIcons />
     </div>

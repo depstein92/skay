@@ -45,6 +45,7 @@ $ternary-color:  #675682;
     height: 65vh;
     position: relative;
     top: 0vh;
+    overflow-y: auto;
     background:
        linear-gradient(
          to top right,
@@ -90,6 +91,7 @@ $ternary-color:  #675682;
         position: absolute;
         left: 25vw;
         top: 0;
+        font-size: 1.5em;
         flex-direction: column;
         height: 100%;
 

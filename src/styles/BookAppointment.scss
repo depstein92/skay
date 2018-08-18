@@ -5,13 +5,6 @@ $primary-color: #e52a6f;
 $secondary-color: #67aeca;
 $ternary-color:  #675682;
 
-@mixin rotate-color($animationTime){
-  -webkit-animation: rotate-color $animationTime;
-       -moz-animation: rotate-color $animationTime;
-        -ms-animation: rotate-color $animationTime;
-         -o-animation: rotate-color $animationTime;
-            animation: rotate-color $animationTime;
-}
 
 .appointment-modal {
   position: absolute;
@@ -24,9 +17,13 @@ $ternary-color:  #675682;
   background-color: $primary-color;
 
   .social-media-icons{
-   position: absolute;
-   bottom: 0;
-   left: 50%;
+    bottom: 0;
+    left: 0;
+    font-size: 3em;
+    display: flex;
+    justify-content: space-evenly;
+    position: absolute;
+    width: 100%;
 
    &:hover{
      cursor: pointer;
@@ -136,6 +133,7 @@ $ternary-color:  #675682;
     font-size: 2em;
     left: 0;
     top: 0;
+    font-size: 3.5em;
     cursor: pointer;
   }
 
@@ -156,11 +154,9 @@ $ternary-color:  #675682;
     font-family: 'Great Vibes';
     color: $primary-color;
     text-shadow: -2px 3px 0 $secondary-color, -5px 7px 0 $ternary-color;
-    animation-iteration-count: infinite;
-    animation-timing-function: step-start;
     margin-bottom: 1%;
     &:hover{
-      @include rotate-color(9s);
+      cursor: pointer;
     }
   }
 
@@ -200,19 +196,19 @@ $ternary-color:  #675682;
 
   .time-zones {
     width: 100%;
-    height: 80vh;
+    height: 100%;
     margin-bottom: 0%;
     padding-top: 20%;
-    background-color: $primary-color;
+    background-color: #675682;
 
     li{
-      height: 25%;
-      background-color: $primary-color;
+      height: 10%;
+      background-color: $ternary-color;
       font-size: 2em;
       list-style-type: none;
 
       &:hover{
-        background-color: $secondary-color;
+        background-color: $ternary-color;
         color: white;
         cursor:pointer;
       }

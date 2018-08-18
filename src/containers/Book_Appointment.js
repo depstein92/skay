@@ -51,7 +51,6 @@ class Book_Appointment extends React.Component{
                    {time: '5PM', month: month, day: day}];
 
     const compareDates = (date1, date2) => {
-
       if(!date2.monthselected ||
          !date2.dayselected ||
          !date2.timeSelected){
@@ -66,11 +65,10 @@ class Book_Appointment extends React.Component{
      } else {
        return false;
      }
-     
+
    }
 
-       if(loading === true){
-
+    if(loading === true){
          return (
            <div className="appointment-loader"
             style={{ position: 'absolute', top: "50%", left: "50%"}}>
@@ -96,7 +94,7 @@ class Book_Appointment extends React.Component{
              } else {
 
              if(!countTimes.includes(dates.time)){
-                countTimes.push(dates.time);
+                 countTimes.push(dates.time);
 
                 bookedTimes.push(
                  <li onClick={this.openModal}
@@ -125,7 +123,7 @@ class Book_Appointment extends React.Component{
     <li>{ month }</li>
   </ul>
   <Link to="/appointment" className="exit">
-    Exit
+    <i className="far fa-arrow-alt-circle-left"></i>
   </Link>
   { isModalOpen === true &&
     <Appointment_Form
