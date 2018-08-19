@@ -11,12 +11,13 @@ $ternary-color: #67aeca;
          -o-animation: rotate-color $animationTime;
             animation: rotate-color $animationTime;
 }
+
 html, body {
     height: 100vh;
     width: 100vw;
 }
 /* Month header */
-.month {
+.month{
   padding: 70px 25px;
   margin-bottom: 0;
   width: 100vw;
@@ -25,9 +26,9 @@ html, body {
      $secondary-color,
      rgba(255, 0, 0, 0.45)
    );
-   background-size: cover;
-   background-repeat: no-repeat;
-   text-align: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  text-align: center;
 
 /* Month list */
 
