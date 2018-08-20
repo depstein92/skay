@@ -77,7 +77,7 @@ showDays(){
 
  let arr =[],
      date = new Date(),
-     todaysDate = date.getDay(),
+     todaysDate = date.getDate(),
      feb = date.getUTCFullYear() % 4 !== 0 ? 28 : 29, //leap year
      elemStyle = { backgroundColor: 'pink' },
      year = date.getUTCFullYear(),

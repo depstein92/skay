@@ -6,6 +6,16 @@ $ternary-color:  #675682;
 
 .checkout-container{
 
+
+  .total-price-checkout-info{
+      width: 100%;
+      position: absolute;
+      border-style: solid;
+      border-color: white;
+      top: 100%;
+      height: 30vh;
+      color: black;
+  }
   .checkout-header{
     height: 30vh;
     border-bottom-style: double;
@@ -122,6 +132,8 @@ $ternary-color:  #675682;
       }
     }
   }
+
+
   .social-media-icons{
     font-size: 4em;
     display: flex;
