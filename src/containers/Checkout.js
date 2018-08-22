@@ -4,6 +4,7 @@ import { CircleLoader } from 'react-spinners';
 import SocialMediaIcons from '../components/Social_Media_Icons';
 import CheckOutHeader from '../components/CheckOutHeader';
 import PaypalExpressBtn from 'react-paypal-express-checkout';
+import _ from 'lodash';
 import '../styles/Checkout.scss';
 
 class Checkout extends React.Component{
@@ -17,6 +18,8 @@ class Checkout extends React.Component{
     this.subNumOfItems = this.subNumOfItems.bind(this);
     this.totalPrice = this.totalPrice.bind(this);
     this.renderPayPalComponent = this.renderPayPalComponent.bind(this);
+    this.determineNumberOfItems = this.determineNumberOfItems.bind(this);
+    this.deleteDuplicateItems = this.deleteDuplicateItems.bind(this);
   }
 
 
@@ -24,10 +27,66 @@ class Checkout extends React.Component{
    this.totalPrice();
   }
 
+
+  determineNumberOfItems(){
+    let { data } = this.props.itemInfo;
+    let itemTitle = new Array(),
+        items = new Array(),
+        num = 1;
+
+    if(!data){ return; }
+
+    for(let i = 0; i < data.length; ++i){
+     let len = data.length,
+         previous = data[(i+len-1)%len],
+         next = data[(i+1)%len],
+         current = data[i],
+         currentTitle = current.item_3,
+         prevTitle = previous.item_3;
+
+     if(!itemTitle.includes(current.item_3)){
+        if(currentTitle !== prevTitle ){
+          num = 1;
+          current.numOfItems = num;
+          items.push(current);
+          num++;
+          } else{
+          current.numOfItems = num;
+          itemTitle.push(current.item_3);
+          items.push(current);
+        }
+     } else{
+        num++;
+        current.numOfItems = num;
+        items.push(current);
+      }
+    }
+     return items;
+  }
+
+  deleteDuplicateItems(items){
+    let finalArr = new Array(),
+    titleTrack = new Array(),
+    newArr = items.sort((a, b) => {
+      return b.numOfItems - a.numOfItems;
+    });
+
+    for(let i =0; i < newArr.length; i++){
+      if(!titleTrack.includes(newArr[i].item_3)){
+         titleTrack.push(newArr[i].item_3);
+         finalArr.push(newArr[i]);
+    }
+  }
+  debugger;
+  return finalArr;
+}
+
+
   addNumOfItems(){
     let { numOfItems } = this.state;
     this.setState({ numOfItems: numOfItems + 1 });
   }
+
 
   subNumOfItems(){
     let { numOfItems } = this.state;
@@ -37,6 +96,7 @@ class Checkout extends React.Component{
       this.setState({ numOfItems: numOfItems - 1 })
     }
   }
+
 
   totalPrice(){
    let { data } = this.props.itemInfo;
@@ -50,6 +110,7 @@ class Checkout extends React.Component{
 
    this.setState({ totalItemPrice: totalItemPrice + total });
 }
+
 
   renderPayPalComponent(total){
 
@@ -77,6 +138,7 @@ class Checkout extends React.Component{
         );
   }
 
+
   displayItems(){
     let { data } = this.props.itemInfo;
 
@@ -88,13 +150,16 @@ class Checkout extends React.Component{
       )
     }
 
-    let itemArray = data.map(obj => {
+    let determineItemNumberArray = this.determineNumberOfItems(data);
+    let removeDuplicateArray = this.deleteDuplicateItems(determineItemNumberArray);
+    debugger;
+    let itemArray = removeDuplicateArray.map(obj => {
         return(
           <div className="checkout-item" key={obj}>
             <div className="checkout-info">
              <img
               className="item-image"
-              src={obj.item_0} />
+              src={ obj.item_0 } />
              <div className="item-description">
               <span className='item-name'>
                 { obj.item_3 }
@@ -117,6 +182,7 @@ class Checkout extends React.Component{
         </div>
          )
     })
+
     return itemArray;
   }
 
@@ -130,11 +196,11 @@ class Checkout extends React.Component{
       { this.displayItems() }
       </div>
       <div className="total-price-checkout-info">
+      <div className="total-price">
+         Total:  ${ totalItemPrice }
+      </div>
         <div className="pay-component">
           { this.renderPayPalComponent(totalItemPrice) }
-        </div>
-        <div className="total-price">
-          { totalItemPrice }
         </div>
       </div>
       <SocialMediaIcons />
