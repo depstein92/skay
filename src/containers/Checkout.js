@@ -38,8 +38,8 @@ class Checkout extends React.Component{
 
     for(let i = 0; i < data.length; ++i){
      let len = data.length,
-         previous = data[(i+len-1)%len],
-         next = data[(i+1)%len],
+         previous = data[ (i + len-1) % len ],
+         next = data[ (i + 1) % len ],
          current = data[i],
          currentTitle = current.item_3,
          prevTitle = previous.item_3;
@@ -77,7 +77,6 @@ class Checkout extends React.Component{
          finalArr.push(newArr[i]);
     }
   }
-  debugger;
   return finalArr;
 }
 
@@ -150,9 +149,9 @@ class Checkout extends React.Component{
       )
     }
 
-    let determineItemNumberArray = this.determineNumberOfItems(data);
-    let removeDuplicateArray = this.deleteDuplicateItems(determineItemNumberArray);
-    debugger;
+    let determineItemNumberArray = this.determineNumberOfItems(data),
+        removeDuplicateArray = this.deleteDuplicateItems(determineItemNumberArray);
+
     let itemArray = removeDuplicateArray.map(obj => {
         return(
           <div className="checkout-item" key={obj}>

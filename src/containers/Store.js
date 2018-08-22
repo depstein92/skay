@@ -182,7 +182,6 @@ renderLashs(){
    <ul>
      <li>Shop</li>
      <li>Home</li>
-     <li>About</li>
      <li>Appointment</li>
      <li>
        <Link to={"/checkout"}>

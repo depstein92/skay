@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Appointment from '../containers/Appointment';
 import Home_Landing from './Home_Landing';
 import Store from '../containers/Store';
-import About from './About';
 import Checkout from '../containers/Checkout';
 import Book_Appointment from '../containers/Book_Appointment';
 import { hot } from 'react-hot-loader'
@@ -21,7 +20,6 @@ class App extends Component {
        <Route exact path='/' component={Home_Landing} />
         <Route path='/shop' component={Store} />
         <Route path='/checkout' component={Checkout} />
-        <Route path='/about' component={About} />
         <Route path='/appointment' component={Appointment} />
         <Route path='/book_appointment/:day/:month' component={Book_Appointment} />
         <Route component={PageNotFound} />
