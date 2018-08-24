@@ -12,22 +12,21 @@ class Checkout extends React.Component{
     super(props)
 
     this.state = { numOfItems: [],
+                   quantityInputOpen: false,
                    totalItemPrice: 0 };
     this.displayItems = this.displayItems.bind(this);
-    this.addNumOfItems = this.addNumOfItems.bind(this);
-    this.subNumOfItems = this.subNumOfItems.bind(this);
     this.totalPrice = this.totalPrice.bind(this);
     this.renderPayPalComponent = this.renderPayPalComponent.bind(this);
     this.determineNumberOfItems = this.determineNumberOfItems.bind(this);
     this.deleteDuplicateItems = this.deleteDuplicateItems.bind(this);
+    this.handleQuantity = this.handleQuantity.bind(this);
+    this.onQuantitySubmit = this.onQuantitySubmit.bind(this);
   }
 
 
   componentDidMount(){
    this.totalPrice();
-
   }
-
 
   determineNumberOfItems(){
     let { data } = this.props.itemInfo;
@@ -82,22 +81,6 @@ class Checkout extends React.Component{
 }
 
 
-  addNumOfItems(id){
-
-    
-  }
-
-
-  subNumOfItems(){
-    let { numOfItems } = this.state;
-    if(numOfItems === 0){
-      return;
-    } else{
-      this.setState({ numOfItems: numOfItems - 1 })
-    }
-  }
-
-
   totalPrice(){
    let { data } = this.props.itemInfo;
    let { totalItemPrice } = this.state;
@@ -110,6 +93,21 @@ class Checkout extends React.Component{
 
    this.setState({ totalItemPrice: totalItemPrice + total });
   }
+
+
+  handleQuantity(e){
+   this.setState({ [e.target.name]: e.target.value });
+  }
+
+  onQuantitySubmit(e){
+    e.preventDefault();
+    let itemAmount = parseInt(e.target.dataset.key)
+    debugger;
+    this.setState({
+      totalItemPrice: this.state.totalItemPrice + itemAmount
+    });
+  }
+
 
   renderPayPalComponent(total){
 
@@ -163,26 +161,28 @@ class Checkout extends React.Component{
               <span className='item-name'>
                 { obj.item_3 }
               </span>
+              { obj.item_1 }
               <span className='item-type'>
                 { obj.item_2 }
               </span>
               <span className='item-price'>
-                { obj.item_1 }
               </span>
             </div>
           </div>
           <div className="checkout-add-item">
-           <i onClick={ () => { this.addNumOfItems(i) }}
-              id={i}
-              value={obj.numOfItems}
-              data-key={obj.numOfItems}
-              className="fas fa-plus-square"></i>
-           <i onClick={ () => { this.subNumOfItem(i) }}
-              data-key={obj.numOfItems}
-              value={obj.numOfItems}
-              id={i}
-              className="fas fa-minus-square"></i>
-           <span>{obj.numOfItems}</span>
+          <form
+           data-key={obj.item_1}
+           onSubmit={this.onQuantitySubmit}>
+           <input
+            type="text"
+            defaultValue={obj.numOfItems}
+            data-key={obj.item_1}
+            name={`item_${i}`}
+            onChange={this.handleQuantity}/>
+            <button type="submit">
+              Change Quantity
+            </button>
+          </form>
           </div>
         </div>
          )

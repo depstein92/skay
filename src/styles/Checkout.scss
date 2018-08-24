@@ -128,11 +128,24 @@ $ternary-color:  #675682;
       font-size: 3em;
       letter-spacing: 2vw;
 
-      i{
-        &:hover{
-          cursor: pointer;
-         }
-        }
+      span{
+        position: absolute;
+        text-align: center;
+        right: 6vw;
+        width: 30vw;
+        height: 5vh;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        font-size: .8em;
+        letter-spacing: 0;
+      }
+
+      input{
+        position: absolute;
+        right: 0vw;
+        width: 5vw;
+       }
       }
     }
   }
