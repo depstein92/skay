@@ -25,6 +25,11 @@ const Landing_Hero_Image = () => {
            Shop
          </Link>
         </li>
+        <li>
+         <Link to="/checkout">
+           Checkout
+         </Link>
+        </li>
          <li>
           <Link to="/appointment">
            Appointment

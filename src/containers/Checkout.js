@@ -11,7 +11,7 @@ class Checkout extends React.Component{
   constructor(props){
     super(props)
 
-    this.state = { numOfItems: 0,
+    this.state = { numOfItems: [],
                    totalItemPrice: 0 };
     this.displayItems = this.displayItems.bind(this);
     this.addNumOfItems = this.addNumOfItems.bind(this);
@@ -25,6 +25,7 @@ class Checkout extends React.Component{
 
   componentDidMount(){
    this.totalPrice();
+
   }
 
 
@@ -81,9 +82,9 @@ class Checkout extends React.Component{
 }
 
 
-  addNumOfItems(){
-    let { numOfItems } = this.state;
-    this.setState({ numOfItems: numOfItems + 1 });
+  addNumOfItems(id){
+
+    
   }
 
 
@@ -108,8 +109,7 @@ class Checkout extends React.Component{
                .reduce((a, b) => a + b);
 
    this.setState({ totalItemPrice: totalItemPrice + total });
-}
-
+  }
 
   renderPayPalComponent(total){
 
@@ -152,9 +152,9 @@ class Checkout extends React.Component{
     let determineItemNumberArray = this.determineNumberOfItems(data),
         removeDuplicateArray = this.deleteDuplicateItems(determineItemNumberArray);
 
-    let itemArray = removeDuplicateArray.map(obj => {
+    let itemArray = removeDuplicateArray.map((obj, i) => {
         return(
-          <div className="checkout-item" key={obj}>
+          <div className="checkout-item" id={i} key={obj}>
             <div className="checkout-info">
              <img
               className="item-image"
@@ -172,11 +172,17 @@ class Checkout extends React.Component{
             </div>
           </div>
           <div className="checkout-add-item">
-           <i onClick={this.addNumOfItems}
+           <i onClick={ () => { this.addNumOfItems(i) }}
+              id={i}
+              value={obj.numOfItems}
+              data-key={obj.numOfItems}
               className="fas fa-plus-square"></i>
-           <i onClick={this.subNumOfItems}
+           <i onClick={ () => { this.subNumOfItem(i) }}
+              data-key={obj.numOfItems}
+              value={obj.numOfItems}
+              id={i}
               className="fas fa-minus-square"></i>
-           <span>{ this.state.numOfItems }</span>
+           <span>{obj.numOfItems}</span>
           </div>
         </div>
          )

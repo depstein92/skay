@@ -180,11 +180,11 @@ renderLashs(){
  <div className="store-navbar">
    <span>Skay</span>
    <ul>
-     <li>Shop</li>
-     <li>Home</li>
-     <li>Appointment</li>
+     <li><Link to="shop">Shop</Link></li>
+     <li><Link to="/">Home</Link></li>
+     <li><Link to="appointment">Appointment</Link></li>
      <li>
-       <Link to={"/checkout"}>
+       <Link to="/checkout">
         <i className="fas fa-shopping-bag fa-2x"></i>
        </Link>
        Bag
@@ -199,7 +199,6 @@ renderLashs(){
        Our Luxury Line
     </span>
     <div className="button-container">
-     <i onClick={this.openSearchModal} className="fas fa-search fa-2x"></i>
      <button onClick={this.getAccessoriesOnly}>Accessories</button>
      <button onClick={this.getLashsOnly}>Lashs</button>
      <button onClick={this.getNailsOnly}>Nails</button>

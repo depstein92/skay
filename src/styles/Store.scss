@@ -309,6 +309,13 @@ Store-Buttons TODO-Sizes may need adjustment
   font-family: Pacifico;
   margin-left: 20%;
   font-size: 1.3em;
+
+  a{
+    color: white;
+    &:hover{
+    color: $ternary-color;
+    }
+  }
  }
 
  .fa-shopping-bag:before{
