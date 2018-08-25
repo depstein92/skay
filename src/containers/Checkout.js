@@ -11,9 +11,10 @@ class Checkout extends React.Component{
   constructor(props){
     super(props)
 
-    this.state = { numOfItems: [],
-                   quantityInputOpen: false,
-                   totalItemPrice: 0 };
+    this.state = { quantityInputOpen: false,
+                   totalItemPrice: 0,
+                   trackedItems: [],
+                   quantity: 0 };
     this.displayItems = this.displayItems.bind(this);
     this.totalPrice = this.totalPrice.bind(this);
     this.renderPayPalComponent = this.renderPayPalComponent.bind(this);
@@ -21,11 +22,13 @@ class Checkout extends React.Component{
     this.deleteDuplicateItems = this.deleteDuplicateItems.bind(this);
     this.handleQuantity = this.handleQuantity.bind(this);
     this.onQuantitySubmit = this.onQuantitySubmit.bind(this);
+    this.trackItemQuantity = this.trackItemQuantity.bind(this);
   }
 
 
   componentDidMount(){
    this.totalPrice();
+   this.trackItemQuantity();
   }
 
   determineNumberOfItems(){
@@ -80,7 +83,6 @@ class Checkout extends React.Component{
   return finalArr;
 }
 
-
   totalPrice(){
    let { data } = this.props.itemInfo;
    let { totalItemPrice } = this.state;
@@ -96,18 +98,29 @@ class Checkout extends React.Component{
 
 
   handleQuantity(e){
-   this.setState({ [e.target.name]: e.target.value });
+   let { trackedItems, totalItemPrice } = this.state;
+   let currentElemName = e.target.name,
+       currentValue = e.target.value === "" ? false : parseInt(e.target.value),
+       currentElemPrice = parseInt(e.target.dataset.key),
+       currentQuantity = trackedItems.reduce((a, b) => a.numOfItems + b.numOfItems),
+       indexOfCurrentElem = trackedItems.map((obj) => obj.item_3).indexOf(currentElemName);
+
+    if(currentValue === false){ return; }
+    if(currentValue > trackedItems[indexOfCurrentElem].numOfItems){
+      this.setState({ /* Fix price calculation*/
+        [e.target.name]: e.target.value,
+        totalItemPrice: totalItemPrice + (currentElemPrice * currentValue)
+      })
+    } else{
+      this.setState({
+        [e.target.name]: e.target.value, /* Fix price calculation*/
+        totalItemPrice: totalItemPrice - (currentElemPrice * currentValue)
+      })
+      debugger;
+    }
   }
 
-  onQuantitySubmit(e){
-    e.preventDefault();
-    let itemAmount = parseInt(e.target.dataset.key)
-    debugger;
-    this.setState({
-      totalItemPrice: this.state.totalItemPrice + itemAmount
-    });
-  }
-
+  onQuantitySubmit(e){ e.preventDefault(); }
 
   renderPayPalComponent(total){
 
@@ -135,6 +148,15 @@ class Checkout extends React.Component{
         );
   }
 
+  trackItemQuantity(arr){
+   let { data } = this.props.itemInfo;
+   let { trackedItems } = this.state;
+   if(!data){ return;}
+   let determineItemNumberArray = this.determineNumberOfItems(data),
+       removeDuplicateArray = this.deleteDuplicateItems(determineItemNumberArray);
+   this.setState({ trackedItems: trackedItems.concat(removeDuplicateArray) });
+
+  }
 
   displayItems(){
     let { data } = this.props.itemInfo;
@@ -172,12 +194,15 @@ class Checkout extends React.Component{
           <div className="checkout-add-item">
           <form
            data-key={obj.item_1}
+           name={`item_${i}`}
+           id={i}
            onSubmit={this.onQuantitySubmit}>
            <input
             type="text"
             defaultValue={obj.numOfItems}
             data-key={obj.item_1}
-            name={`item_${i}`}
+            id={i}
+            name={obj.item_3}
             onChange={this.handleQuantity}/>
             <button type="submit">
               Change Quantity
@@ -187,7 +212,6 @@ class Checkout extends React.Component{
         </div>
          )
     })
-
     return itemArray;
   }
 
