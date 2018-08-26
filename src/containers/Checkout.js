@@ -11,10 +11,12 @@ class Checkout extends React.Component{
   constructor(props){
     super(props)
 
-    this.state = { quantityInputOpen: false,
+    this.state = {
+                   quantityInputOpen: false,
                    totalItemPrice: 0,
                    trackedItems: [],
-                   quantity: 0 };
+                   quantityIndex: 0
+                 };
     this.displayItems = this.displayItems.bind(this);
     this.totalPrice = this.totalPrice.bind(this);
     this.renderPayPalComponent = this.renderPayPalComponent.bind(this);
@@ -51,16 +53,19 @@ class Checkout extends React.Component{
         if(currentTitle !== prevTitle ){
           num = 1;
           current.numOfItems = num;
+          current.index = 0;
           items.push(current);
           num++;
           } else{
           current.numOfItems = num;
+          current.index = 0;
           itemTitle.push(current.item_3);
           items.push(current);
         }
      } else{
         num++;
         current.numOfItems = num;
+        current.index = 0;
         items.push(current);
       }
     }
@@ -98,25 +103,37 @@ class Checkout extends React.Component{
 
 
   handleQuantity(e){
+
    let { trackedItems, totalItemPrice } = this.state;
    let currentElemName = e.target.name,
        currentValue = e.target.value === "" ? false : parseInt(e.target.value),
        currentElemPrice = parseInt(e.target.dataset.key),
-       currentQuantity = trackedItems.reduce((a, b) => a.numOfItems + b.numOfItems),
-       indexOfCurrentElem = trackedItems.map((obj) => obj.item_3).indexOf(currentElemName);
+       indexOfCurrentElem = trackedItems.map((obj) => obj.item_3).indexOf(currentElemName),
+       prevValue = trackedItems[indexOfCurrentElem].numOfItems,
+       quantityDifference =  currentValue - prevValue,
+       quantityDifferenceNeg = Math.abs(quantityDifference);
 
     if(currentValue === false){ return; }
-    if(currentValue > trackedItems[indexOfCurrentElem].numOfItems){
+
+    if(currentValue >= prevValue){
+       let item = Object.assign({}, trackedItems[indexOfCurrentElem], { numOfItems: currentValue }),
+           newStateWithRemove = trackedItems.splice(indexOfCurrentElem, 1, item),
+           newState = [ ...trackedItems];
+
       this.setState({ /* Fix price calculation*/
         [e.target.name]: e.target.value,
-        totalItemPrice: totalItemPrice + (currentElemPrice * currentValue)
+        totalItemPrice: totalItemPrice + ((quantityDifference * currentElemPrice)),
+        trackedItems : newState,
       })
+
     } else{
+      trackedItems[indexOfCurrentElem].numOfItems = currentValue;
+
       this.setState({
-        [e.target.name]: e.target.value, /* Fix price calculation*/
-        totalItemPrice: totalItemPrice - (currentElemPrice * currentValue)
+        [e.target.name]: e.target.value,
+        trackedItems,
+        totalItemPrice: totalItemPrice - ((quantityDifferenceNeg * currentElemPrice))
       })
-      debugger;
     }
   }
 
