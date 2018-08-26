@@ -14,9 +14,8 @@ class Checkout extends React.Component{
     this.state = {
                    quantityInputOpen: false,
                    totalItemPrice: 0,
-                   trackedItems: [],
-                   quantityIndex: 0
-                 };
+                   trackedItems: []
+    };
     this.displayItems = this.displayItems.bind(this);
     this.totalPrice = this.totalPrice.bind(this);
     this.renderPayPalComponent = this.renderPayPalComponent.bind(this);
@@ -25,6 +24,7 @@ class Checkout extends React.Component{
     this.handleQuantity = this.handleQuantity.bind(this);
     this.onQuantitySubmit = this.onQuantitySubmit.bind(this);
     this.trackItemQuantity = this.trackItemQuantity.bind(this);
+    this.removeItemFromCart = this.removeItemFromCart.bind(this);
   }
 
 
@@ -116,6 +116,7 @@ class Checkout extends React.Component{
     if(currentValue === false){ return; }
 
     if(currentValue >= prevValue){
+
        let item = Object.assign({}, trackedItems[indexOfCurrentElem], { numOfItems: currentValue }),
            newStateWithRemove = trackedItems.splice(indexOfCurrentElem, 1, item),
            newState = [ ...trackedItems];
@@ -127,6 +128,7 @@ class Checkout extends React.Component{
       })
 
     } else{
+
       trackedItems[indexOfCurrentElem].numOfItems = currentValue;
 
       this.setState({
@@ -165,6 +167,22 @@ class Checkout extends React.Component{
         );
   }
 
+  removeItemFromCart(e){
+
+    let { trackedItems, totalItemPrice } = this.state;
+    let parent = e.target.parentElement.parentElement.parentElement,
+        parentId = parseInt(parent.id),
+        itemPrice = parseInt(trackedItems[parentId].item_1) * trackedItems[parentId].numOfItems;
+
+    parent.style.visibility = 'hidden';
+    parent.style.height = '0';
+
+    this.setState({
+      totalItemPrice: totalItemPrice - itemPrice
+    })
+
+  }
+
   trackItemQuantity(arr){
    let { data } = this.props.itemInfo;
    let { trackedItems } = this.state;
@@ -172,7 +190,6 @@ class Checkout extends React.Component{
    let determineItemNumberArray = this.determineNumberOfItems(data),
        removeDuplicateArray = this.deleteDuplicateItems(determineItemNumberArray);
    this.setState({ trackedItems: trackedItems.concat(removeDuplicateArray) });
-
   }
 
   displayItems(){
@@ -193,6 +210,13 @@ class Checkout extends React.Component{
         return(
           <div className="checkout-item" id={i} key={obj}>
             <div className="checkout-info">
+            <span
+             name={obj.item_3}
+             id={i}
+             onClick={this.removeItemFromCart}
+             className="delete-item">
+              <i className="far fa-times-circle"></i>
+            </span>
              <img
               className="item-image"
               src={ obj.item_0 } />
@@ -221,9 +245,9 @@ class Checkout extends React.Component{
             id={i}
             name={obj.item_3}
             onChange={this.handleQuantity}/>
-            <button type="submit">
-              Change Quantity
-            </button>
+            <span className="submit">
+              Quantity
+            </span>
           </form>
           </div>
         </div>

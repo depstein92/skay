@@ -87,6 +87,16 @@ $ternary-color:  #675682;
      .checkout-info{
        position: absolute;
 
+      .delete-item{
+        position: absolute;
+        top: -5%;
+        left: 0;
+        font-size: 2.5em;
+        &:hover{
+          cursor: pointer;
+        }
+      }
+
       .item-image{
         max-width: 20vw;
         max-height: 20vh;
@@ -142,9 +152,12 @@ $ternary-color:  #675682;
       }
 
       input{
-        position: absolute;
-        right: 0vw;
-        width: 5vw;
+       position: absolute;
+       right: 0vw;
+       width: 5vw;
+       border-radius: 50%;
+       border-style: solid;
+       text-align: center;
        }
       }
     }
