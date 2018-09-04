@@ -64,6 +64,7 @@ openSearchModal(){
 closeSearchModal(){
   this.setState({ isSearchModalOpen: false });
 }
+
 addToCart(event){
   let seperateInfo = event.target.dataset.key.split(',');
   let { itemsInCart, itemListInCart } = this.state;

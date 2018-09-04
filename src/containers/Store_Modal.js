@@ -46,20 +46,7 @@ addItemToCart(){
   for(let i = 0; i < values.length; i++){
     dataObj['item_' + i] = values[i];
   }
-
-  // let itemName = Object.assign({
-  //   item_0: values[0],
-  //   item_1: values[1],
-  //   item_2: values[2],
-  //   item_3: values[3],
-  //   item_4: values[4],
-  //   item_5: values[5],
-  //   item_6: values[6],
-  //   item_7: values[7]
-  // }, {});
-
   this.state.itemsInCart.push(dataObj);
-  debugger;
   sendItemCheckout(this.state.itemsInCart);
 }
 

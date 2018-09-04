@@ -119,7 +119,7 @@ top: -34%;
 .store-table{
   background-image: linear-gradient(to top right, #67aeca, #e52a6f);
   height: 600vh;
-  
+
  .row{
    display: flex;
    flex-direction: row;
@@ -361,7 +361,7 @@ HERO_IMAGE_STORE
       rgba(255, 0, 0, 0.45)
     ),
     /* bottom, image */
-    url(https://images.pexels.com/photos/137132/pexels-photo-137132.jpeg?auto=compress&cs=tinysrgb&h=650&w=940);
+    url('../styles/images/lemon.jpg');
    background-size: cover;
    background-repeat: no-repeat;
  }

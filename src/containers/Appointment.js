@@ -2,6 +2,7 @@
 import Book_Appointment from './Book_Appointment';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import SocialMediaIcons from '../components/Social_Media_Icons';
 import '../styles/Appointment.scss'
 
 class Appointment extends Component {
@@ -136,6 +137,7 @@ showDays(){
  <ul className="days">
  { this.showDays() }
  </ul>
+<SocialMediaIcons />
 </div>
     )
   }
