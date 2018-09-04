@@ -117,7 +117,9 @@ top: -34%;
 }
 
 .store-table{
-
+  background-image: linear-gradient(to top right, #67aeca, #e52a6f);
+  height: 600vh;
+  
  .row{
    display: flex;
    flex-direction: row;

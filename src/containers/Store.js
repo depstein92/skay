@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SocialMediaIcons from '../components/Social_Media_Icons';
 import { Link } from 'react-router-dom';
 import Store_Modal from './Store_Modal';
+import '../styles/StoreModal.scss';
 import { getItemInfo, sendItemCheckout }from '../actions/index';
 import Store_Search_Modal from './Store_Search_Modal';
 import { connect } from 'react-redux';
@@ -39,7 +40,6 @@ constructor(props){
   this.addToCart = this.addToCart.bind(this);
   }
 
-
 getAccessoriesOnly(){
   this.setState({ getItem: 'accessories' });
 }
@@ -73,6 +73,7 @@ addToCart(event){
         }, {});
   this.state.itemListInCart.push(passInfo);
   this.setState({ itemsInCart: itemsInCart + 1 });
+  debugger;
   this.props.sendItemCheckout(itemListInCart);
 }
 

@@ -6,7 +6,7 @@ const initialState = {
 
 function Store_Reducer(state=initialState, action){
   switch(action.type){
-    case 'GET_ITEM_INFO_REQUEST': /*Will fix after*/
+    case 'GET_ITEM_INFO_REQUEST': 
      return { ...state, fetching: false, error: null, data: action.payload }
      break;
     case "GET_ITEM_INFO_FAILURE":

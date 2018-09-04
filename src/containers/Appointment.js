@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+  import React, { Component } from 'react';
 import Book_Appointment from './Book_Appointment';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -83,7 +83,7 @@ showDays(){
      year = date.getUTCFullYear(),
      { month, day } = this.state,
      dateMonth = date.getMonth(),
-     monthsInDays = [31, feb, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+     monthsInDays = [32, feb, 32, 30, 32, 30, 32, 32, 30, 32, 32, 32],
      currentMonth = monthsInDays[ date.getMonth() - 1 + month ],
      months = ['January','Febuary','March', 'April', 'May',
                'June', 'July', 'August','September', 'October',

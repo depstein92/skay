@@ -41,7 +41,30 @@ class Appointment_Form extends Component{
     let { book, timeSelected, dayselected, monthselected, closeModal } = this.props;
     closeModal();
     book(email, firstName, lastName, timeSelected, dayselected, monthselected);
+   // sendFeedback( /*everything doen non-tested*/
+   //   process.env.DB_EMAIL_TEMPLATE_ID,
+   //   process.env.DB_EMAIL_SENDER_EMAIL,
+   //   email,
+   //   { timeSelected, dayselected, monthselected }
+   // )
+
+
+  function sendFeedback (templateId, senderEmail, receiverEmail, data){
+   window.emailjs.send(
+     'mailgun',
+     templateId,
+     {
+       receiverEmail,
+       timeSelected: data.timeSelected,
+       dayselected: data.dayselected,
+       monthselected: data.monthselected
+     })
+     .then(res => {
+       console.log('Email sent successfully mate');
+     })
+     .catch(err => console.error('Failed to send feedback. Error: ', err))
   }
+}
 
   render(){
     let { closeModal, timeSelected, dayselected, monthselected } = this.props;

@@ -147,6 +147,24 @@ $ternary-color:  #675682;
 //@media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */ }
 //@media (min-width:1281px) { /* hi-res laptops and desktops */ }*/
 
+
+
+@media screen and (max-width:800px){
+  .home-landing{
+    .Skay_Logo{
+      font-size: 10em;
+    }
+  }
+  ul{
+    flex-flow: wrap;
+    top: 5vh;
+    font-size: 1em;
+  }
+
+}
+
+
+
 /* keyframes*/
 @keyframes fadein {
     from { opacity: 0; }

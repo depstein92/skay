@@ -56,6 +56,7 @@ class Checkout extends React.Component{
           current.index = 0;
           items.push(current);
           num++;
+          debugger;
           } else{
           current.numOfItems = num;
           current.index = 0;
@@ -69,6 +70,7 @@ class Checkout extends React.Component{
         items.push(current);
       }
     }
+    debugger;
      return items;
   }
 
@@ -168,7 +170,6 @@ class Checkout extends React.Component{
   }
 
   removeItemFromCart(e){
-
     let { trackedItems, totalItemPrice } = this.state;
     let parent = e.target.parentElement.parentElement.parentElement,
         parentId = parseInt(parent.id),
@@ -180,7 +181,6 @@ class Checkout extends React.Component{
     this.setState({
       totalItemPrice: totalItemPrice - itemPrice
     })
-
   }
 
   trackItemQuantity(arr){
@@ -205,7 +205,7 @@ class Checkout extends React.Component{
 
     let determineItemNumberArray = this.determineNumberOfItems(data),
         removeDuplicateArray = this.deleteDuplicateItems(determineItemNumberArray);
-
+    debugger;
     let itemArray = removeDuplicateArray.map((obj, i) => {
         return(
           <div className="checkout-item" id={i} key={obj}>

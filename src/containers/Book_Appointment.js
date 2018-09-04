@@ -77,6 +77,7 @@ class Book_Appointment extends React.Component{
          )
        } else{
          const countTimes = [];
+
          times.forEach(dates => {
            _.mapValues(this.props.bookedAppointmentData.data, (o) => {
 
@@ -90,23 +91,22 @@ class Book_Appointment extends React.Component{
                       className="time">{ dates.time }<hr/>
                       Appointment Booked
                   </li>)
-
              } else {
-
              if(!countTimes.includes(dates.time)){
-                 countTimes.push(dates.time);
-
+                countTimes.push(dates.time);
                 bookedTimes.push(
                  <li onClick={this.openModal}
                    key={dates.time}
                    data-time={dates.time}
                    className="time">{ dates.time }<hr/>
                </li>)
+
               }
              }
            });
         });
     }
+        
         return bookedTimes;
   }
 

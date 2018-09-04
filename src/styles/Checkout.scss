@@ -4,6 +4,18 @@ $primary-color: #e52a6f;
 $secondary-color: #67aeca;
 $ternary-color:  #675682;
 
+ @media screen and (max-width: 850px){
+   .checkout-container{
+     .checkout-header{
+      .checkout-logo{
+        left: 15%;
+        font-size: 2em;
+      }
+     }
+   }
+ }
+
+
 .checkout-container{
 
 
@@ -74,7 +86,8 @@ $ternary-color:  #675682;
       font-weight: bold;
       text-decoration: unset;
       letter-spacing: .1em;
-    }
+    }    background-image: linear-gradient(to top right, #67aeca, #e52a6f);
+      height: 70vh;
 
    .checkout-item{
      border-style: solid;
