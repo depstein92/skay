@@ -51,7 +51,6 @@ addItemToCart(){
 }
 
 render(){
-  console.log(this.props.item_info);
   return (
 <div className="modal">
   <section className="modal-main">

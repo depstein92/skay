@@ -75,7 +75,6 @@ class Book_Appointment extends React.Component{
       }
      }
     }
-   debugger;
    return arr;
   }
 

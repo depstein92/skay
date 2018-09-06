@@ -21,6 +21,7 @@ class Appointment_Form extends Component{
     this.getTimeOfDay = this.getTimeOfDay.bind(this);
   }
 
+  
   onChangeEmail(e){
     this.setState({ email: e.target.value });
   }
@@ -41,12 +42,12 @@ class Appointment_Form extends Component{
     let { book, timeSelected, dayselected, monthselected, closeModal } = this.props;
     closeModal();
     book(email, firstName, lastName, timeSelected, dayselected, monthselected);
-   // sendFeedback( /*everything doen non-tested*/
-   //   process.env.DB_EMAIL_TEMPLATE_ID,
-   //   process.env.DB_EMAIL_SENDER_EMAIL,
-   //   email,
-   //   { timeSelected, dayselected, monthselected }
-   // )
+    sendFeedback(
+     process.env.DB_EMAIL_TEMPLATE_ID,
+     process.env.DB_EMAIL_SENDER_EMAIL,
+     email,
+     { timeSelected, dayselected, monthselected }
+    )
 
 
   function sendFeedback (templateId, senderEmail, receiverEmail, data){
@@ -69,6 +70,7 @@ class Appointment_Form extends Component{
   render(){
     let { closeModal, timeSelected, dayselected, monthselected } = this.props;
     let { email, firstName, lastName } = this.state;
+
     return(
       <div className="appointment-form-background">
         <div className="appointment-form-exit" onClick={closeModal}>

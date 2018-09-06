@@ -7,6 +7,7 @@ import { getItemInfo, sendItemCheckout }from '../actions/index';
 import Store_Search_Modal from './Store_Search_Modal';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import uniqueId from 'react-html-id';
 import { CircleLoader } from 'react-spinners';
 import { lashs_data, nails_data, accessories_data } from '../store-items.json';
 import '../styles/Store.scss';
@@ -38,6 +39,7 @@ constructor(props){
   this.openSearchModal = this.openSearchModal.bind(this);
   this.closeSearchModal = this.closeSearchModal.bind(this);
   this.addToCart = this.addToCart.bind(this);
+  uniqueId.enableUniqueIds(this)
   }
 
 getAccessoriesOnly(){
@@ -74,7 +76,6 @@ addToCart(event){
         }, {});
   this.state.itemListInCart.push(passInfo);
   this.setState({ itemsInCart: itemsInCart + 1 });
-  debugger;
   this.props.sendItemCheckout(itemListInCart);
 }
 
@@ -83,7 +84,7 @@ renderAccessories(){
    let { img, price, style, title, rating, description } = obj;
    let passInfo = Object.values(obj);
    return (
-     <td id="cell" key={obj}>
+     <td id="cell" key={this.nextUniqueId()}>
       { this.state.isModalOpen !== false ?
         <Store_Modal closeModal={this.closeModal} item_info={obj} /> : null }
        <img
@@ -115,7 +116,7 @@ renderNails(){
    let { img, price, style, title, rating } = obj;
    let passInfo = Object.values(obj);
    return (
-     <td id="cell" key={obj}>
+     <td id="cell" key={this.nextUniqueId()}>
         { this.state.isModalOpen !== false ?
           <Store_Modal closeModal={this.closeModal} item_info={obj} /> : null }
        <img
@@ -148,7 +149,7 @@ renderLashs(){
     let { img, price, style, title, rating } = obj
     let passInfo = Object.values(obj);
    return (
- <td id="cell" key={obj}>
+ <td id="cell" key={this.nextUniqueId()}>
   { this.state.isModalOpen !== false ?
      <Store_Modal closeModal={this.closeModal} item_info={obj}  /> : null }
   <img

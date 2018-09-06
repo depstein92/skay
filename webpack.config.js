@@ -1,6 +1,7 @@
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const webpack = require('webpack');
 
@@ -61,6 +62,13 @@ const config = {
      cssProcessor: require('cssnano'),
      cssProcessorOptions: { discardComments: { removeAll: true } },
      canPrint: true
+   }),
+   new webpack.DefinePlugin({
+     'process.env':{
+       'DB_EMAIL_TEMPLATE_ID': JSON.stringify(process.env.DB_EMAIL_TEMPLATE_ID),
+       'DB_EMAIL_SENDER_EMAIL': JSON.stringify(process.env.DB_EMAIL_SENDER_EMAIL),
+       'DB_EMAIL_USER_KEY': JSON.stringify(process.env.DB_EMAIL_USER_KEY)
+     }
    })
  ],
   resolve: {
