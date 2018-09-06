@@ -62,11 +62,22 @@ class Book_Appointment extends React.Component{
         return true;
          }
        }
-     } else {
+      } else {
        return false;
      }
-
    }
+
+   const removeFirstDuplicate = (arr) => {
+    for(let i = 0; i < arr.length; i++){
+     for(let j = i + 1; j < arr.length; j++){
+      if(arr[i].key === arr[j].key){
+       arr.splice(arr.indexOf(arr[i]), 1);
+      }
+     }
+    }
+   debugger;
+   return arr;
+  }
 
     if(loading === true){
          return (
@@ -106,8 +117,7 @@ class Book_Appointment extends React.Component{
            });
         });
     }
-        
-        return bookedTimes;
+        return removeFirstDuplicate(bookedTimes);
   }
 
   render(){
