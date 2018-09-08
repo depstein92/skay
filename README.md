@@ -1,5 +1,5 @@
 
-![picture](./styles/images/pinapple_readme.png)
+![picture](../styles/images/pinapple_readme.png)
 
 
 
