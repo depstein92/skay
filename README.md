@@ -1,8 +1,6 @@
 
-![picture](../styles/images/pinapple_readme.png)
 
-
-
+# Skay Beauty Palace
 
 This is an online store created for Cosmetologist Rashawna Green. At Skay Beauty Palace you can shop for custom Lashs, Weaves, and Nails! View, Rate and Purchase Products in Stock! Looking to make an appointment with Ms. Green? You can make an appointment to have Lashs, Weaves, or Nails done and an email confirmation with the time, day and month will be sent to your email!(No same day appointments).
 
