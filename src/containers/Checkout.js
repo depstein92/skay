@@ -70,7 +70,6 @@ class Checkout extends React.Component{
         items.push(current);
       }
     }
-    debugger;
      return items;
   }
 
