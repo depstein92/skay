@@ -4,11 +4,14 @@
   "description": "Lash's by Skay",
   "main": "index.js",
   "repository": "https://github.com/depstein92/Skay.git",
+  "homepage":"https://depstein92.github.io/Skay/",
   "scripts": {
     "dev": "webpack --mode development",
     "build": "NODE_ENV=production npm clean && webpack -p",
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "hot": "webpack-dev-server --hot"
+    "hot": "webpack-dev-server --hot",
+    "predeploy": "npm run start",
+    "deploy": "gh-pages -d build"
   },
   "author": "Daniel Epstein",
   "license": "ISC",
@@ -48,6 +51,7 @@
     "dotenv": "^6.0.0",
     "firebase": "^5.3.0",
     "flatpickr": "^4.5.0",
+    "gh-pages": "^1.2.0",
     "hard-source-webpack-plugin": "^0.6.4",
     "lodash": "^4.17.5",
     "node-sass": "^4.8.3",
