@@ -3,6 +3,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const path = require('path');
 const webpack = require('webpack');
 
 const config = {
@@ -10,7 +11,7 @@ const config = {
   mode: 'development',
   entry: ['babel-polyfill', './src/index.js' ],
   output: {
-    path: path.join(__dirname, "examples/dist"),
+    path: path.join(__dirname, "production/dist"),
     filename: "bundle.js"
   },
   module: {
