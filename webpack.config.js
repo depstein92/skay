@@ -10,9 +10,8 @@ const config = {
   mode: 'development',
   entry: ['babel-polyfill', './src/index.js' ],
   output: {
-    path: __dirname,
-    publicPath: '/',
-    filename: 'bundle.js'
+    path: path.join(__dirname, "examples/dist"),
+    filename: "bundle.js"
   },
   module: {
     rules: [

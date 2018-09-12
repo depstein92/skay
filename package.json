@@ -10,7 +10,7 @@
     "build": "webpack --mode production",
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "hot": "webpack-dev-server --hot",
-    "deploy": "gh-pages -d examples/dist",
+    "deploy": "gh-pages -d production/dist",
     "publish-demo": "npm run build && npm run deploy"
   },
   "author": "Daniel Epstein",
