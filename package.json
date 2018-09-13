@@ -9,9 +9,7 @@
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "hot": "webpack-dev-server --hot",
-    "deploy": "gh-pages -d production/dist",
-    "publish-demo": "npm run build && npm run deploy"
+    "hot": "webpack-dev-server --hot"
   },
   "author": "Daniel Epstein",
   "license": "ISC",
