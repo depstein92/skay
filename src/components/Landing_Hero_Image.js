@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/LandingHeroImage.scss'
+import pineappleImage from '../styles/images/pineapple.jpg';
 
 const Landing_Hero_Image = () => {
   return (
-    <div className="home-landing">
+    <div className="home-landing" style={{ backgroundImage: pineappleImage }}>
      <div className="Skay_Logo">Skay</div>
      <div id="media-icons-landing">
       <button className="ui circular facebook icon button">
