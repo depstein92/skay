@@ -38,9 +38,9 @@ const config = {
       test: /\.(png|jpg|gif|woff|woff2|eot|ttf|svg|jpeg)$/,
       use: [
          {
-           loader: 'url-loader',
+           loader: 'file-loader',
            options: {
-             limit: 10000
+            name: '[path][name].[ext]'
            }
          }
        ]
